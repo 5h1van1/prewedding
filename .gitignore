@@ -42,4 +42,10 @@ single player il image updation.txt
 usecase.png
 prep/
 srp/
+config/
+input/
+outputs/
+setup_inputs.py
+src/*.py
+src/visualizer_server.js
 
