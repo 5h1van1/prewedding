@@ -125,7 +125,7 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
                 onClick={() => scrollToSection('faceoff')}
                 className="text-left px-3 py-2 rounded-xl hover:bg-rose-50 flex items-center justify-between"
               >
-                <span>Team Amrutha vs Team Sanjay</span>
+                <span>{config.teams.bride.name} vs {config.teams.groom.name}</span>
                 <span className="text-xs text-rose-600 font-semibold font-serif">Squads</span>
               </button>
               <button
@@ -157,7 +157,7 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
                   <Shield className="h-3.5 w-3.5" />
                   <span>Organizer Admin</span>
                 </button>
-                <span className="text-xs text-amber-600 font-serif font-bold">#AmruthaAndSanjay</span>
+                <span className="text-xs text-amber-600 font-serif font-bold">{config.hashtag}</span>
               </div>
             </div>
           </div>

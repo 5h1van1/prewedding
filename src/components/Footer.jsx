@@ -87,7 +87,7 @@ export default function Footer({ onNavigateToAdmin }) {
 
         {/* Admin Link */}
         <div className="border-t border-stone-900 pt-6 flex items-center justify-between text-xs text-stone-500">
-          <span>© {new Date().getFullYear()} Amrutha & Sanjay Pre-Wedding Celebration</span>
+          <span>© {new Date().getFullYear()} {config.couple.brideName} & {config.couple.groomName} Pre-Wedding Celebration</span>
           <button
             onClick={onNavigateToAdmin}
             className="inline-flex items-center gap-1 text-stone-400 hover:text-amber-300 transition-colors py-1 px-2.5 rounded-lg hover:bg-stone-900"

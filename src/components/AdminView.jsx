@@ -609,7 +609,7 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
                     onChange={(e) => setModalForm({ ...modalForm, team: e.target.value })}
                     className="w-full rounded-xl border border-slate-300 bg-slate-50 py-2.5 px-3 text-xs font-semibold text-slate-900 focus:outline-none"
                   >
-                    <option value="bride">Team Amrutha (Rose)</option>
+                    <option value="bride">Team Amritha (Rose)</option>
                     <option value="groom">Team Sanjay (Gold)</option>
                   </select>
                 </div>

@@ -77,7 +77,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
     }
     if (step === 2) {
       if (!team) {
-        setErrorMsg('Please choose your squad (Team Amrutha or Team Sanjay).');
+        setErrorMsg(`Please choose your squad (${config.teams.bride.name} or ${config.teams.groom.name}).`);
         return false;
       }
     }
@@ -266,7 +266,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                     </p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {/* Team Amrutha (Rose Gold) */}
+                      {/* Team Amritha (Rose Gold) */}
                       <div
                         onClick={() => setTeam('bride')}
                         className={`relative cursor-pointer rounded-2xl p-4 border-2 transition-all flex flex-col justify-between ${

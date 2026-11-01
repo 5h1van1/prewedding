@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { config } from '../config';
+import { config, resolveImageUrl } from '../config';
 import Countdown from './Countdown';
 import { Calendar, MapPin, Sparkles, ChevronDown, Heart } from 'lucide-react';
 
@@ -15,7 +15,7 @@ export default function Hero() {
       {/* Background Couple Photo with Warm Rose & Golden Lighting */}
       <div className="absolute inset-0 z-0">
         <img
-          src={config.couple.heroImage}
+          src={resolveImageUrl(config.couple.heroImage)}
           alt={`${config.couple.brideName} and ${config.couple.groomName}`}
           className="h-full w-full object-cover object-center scale-105 filter brightness-[0.82] contrast-[1.04]"
         />

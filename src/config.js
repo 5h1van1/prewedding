@@ -5,17 +5,32 @@
  * ALL personal details, dates, venue info, story captions, jersey size chart,
  * and event text can be customized right here!
  *
- * Theme: Rose & Gold Wedding Aesthetic (Amrutha & Sanjay)
+ * Theme: Rose & Gold Wedding Aesthetic (Amritha & Sanjay)
  */
+
+/**
+ * Helper to safely resolve local vs remote photo paths across GitHub Pages and subpaths
+ */
+export function resolveImageUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
+  }
+  // Convert root-relative /photos/ to ./photos/ for relative static hosting
+  if (url.startsWith('/')) {
+    return '.' + url;
+  }
+  return url;
+}
 
 export const config = {
   // Couple Information
   couple: {
-    brideName: "Amrutha",
+    brideName: "Amritha",
     groomName: "Sanjay",
     brideNickname: "The Rose Queen",
     groomNickname: "The Golden Striker",
-    hashtag: "#AmruthaAndSanjay",
+    hashtag: "#AmrithaAndSanjay",
     tagline: "Before we step into wedding elegance, let's play our hearts out! 💍✨",
     heroSubtitle: "A warm, joyful pre-wedding evening filled with friendly matches, laughter, custom jerseys, and dinner under glowing fairy lights.",
     // Elegant couple portrait with warm golden rose tones
@@ -64,9 +79,9 @@ export const config = {
   teams: {
     bride: {
       id: "bride",
-      name: "Team Amrutha",
+      name: "Team Amritha",
       subtitle: "The Rose Gold Squad",
-      captain: "Captain Amrutha",
+      captain: "Captain Amritha",
       colorName: "Dusty Rose & Blush",
       primaryHex: "#be185d", // Rose gold / deep blush
       secondaryHex: "#fff1f2", // Rose 50
@@ -105,7 +120,7 @@ export const config = {
     {
       step: 2,
       time: "5:45 PM",
-      title: "The Friendly Clash: Team Amrutha vs Team Sanjay",
+      title: "The Friendly Clash: Team Amritha vs Team Sanjay",
       description: "A fun-filled 8-a-side box cricket match with mystery powerplays, hilarious umpire reviews, and cheer squads!",
       icon: "Trophy",
       highlight: true,
@@ -122,7 +137,7 @@ export const config = {
       step: 4,
       time: "7:15 PM",
       title: "Celebration Cake Cutting & Toasts",
-      description: "Popping confetti, toasting to Amrutha & Sanjay, and snapping unforgettable squad photos.",
+      description: "Popping confetti, toasting to Amritha & Sanjay, and snapping unforgettable squad photos.",
       icon: "Cake",
       highlight: false,
     },
@@ -176,7 +191,7 @@ export const config = {
     {
       id: 3,
       title: "The Golden Proposal",
-      caption: "Under a warm sunset sky, Sanjay asked the most magical question of all — and Amrutha said the easiest 'Yes' of her life.",
+      caption: "Under a warm sunset sky, Sanjay asked the most magical question of all — and Amritha said the easiest 'Yes' of her life.",
       image: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1000&q=80",
       tag: "She Said Yes!",
     },
@@ -206,5 +221,5 @@ export const config = {
   ],
 
   // WhatsApp Share invitation message template
-  whatsAppInviteText: "Hey! 💍✨ Join us for Amrutha & Sanjay's Pre-Wedding Celebration & Turf Match! Custom jerseys, friendly games, and dinner under golden lights. Pick your squad and RSVP here: ",
+  whatsAppInviteText: "Hey! 💍✨ Join us for Amritha & Sanjay's Pre-Wedding Celebration & Turf Match! Custom jerseys, friendly games, and dinner under golden lights. Pick your squad and RSVP here: ",
 };

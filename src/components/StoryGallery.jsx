@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { config } from '../config';
+import { config, resolveImageUrl } from '../config';
 import { Heart, ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
 
 export default function StoryGallery() {
@@ -48,7 +48,7 @@ export default function StoryGallery() {
             <AnimatePresence mode="wait">
               <motion.img
                 key={carouselIndex}
-                src={gallery[carouselIndex]?.image}
+                src={resolveImageUrl(gallery[carouselIndex]?.image)}
                 alt={gallery[carouselIndex]?.title}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -137,7 +137,7 @@ export default function StoryGallery() {
                 }`}
               >
                 <img
-                  src={item.image}
+                  src={resolveImageUrl(item.image)}
                   alt={item.title}
                   className="h-full w-full object-cover"
                 />
@@ -170,7 +170,7 @@ export default function StoryGallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={gallery[activeLightboxIndex]?.image}
+                src={resolveImageUrl(gallery[activeLightboxIndex]?.image)}
                 alt={gallery[activeLightboxIndex]?.title}
                 className="max-h-[75vh] w-full rounded-2xl object-contain mx-auto shadow-2xl"
               />

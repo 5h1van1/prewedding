@@ -34,7 +34,7 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
             {config.teams.bride.name} <span className="text-amber-500 font-script font-normal text-4xl sm:text-5xl">&</span> {config.teams.groom.name}
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 mt-2 max-w-md mx-auto leading-relaxed">
-            Choose your side for the celebration match! Whether you're cheering for Amrutha's Rose Squad or Sanjay's Gold Squad, custom jerseys await you!
+            Choose your side for the celebration match! Whether you're cheering for Amritha's Rose Squad or Sanjay's Gold Squad, custom jerseys await you!
           </p>
         </div>
 
@@ -81,7 +81,7 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
             {brideCount === groomCount ? (
               <span>Squad numbers are equal! Next RSVP takes the lead. ✨</span>
             ) : brideCount > groomCount ? (
-              <span className="text-rose-700 font-medium">Team Amrutha's Rose Squad has the bigger cheer squad right now! 🌸</span>
+              <span className="text-rose-700 font-medium">Team Amritha's Rose Squad has the bigger cheer squad right now! 🌸</span>
             ) : (
               <span className="text-amber-800 font-medium">Team Sanjay's Gold Squad is shining with strong player numbers! 👑</span>
             )}
@@ -90,7 +90,7 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
 
         {/* Squad Cards Grid: Rose vs Gold */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-          {/* Team Amrutha (Dusty Rose & Blush) */}
+          {/* Team Amritha (Dusty Rose & Blush) */}
           <motion.div
             whileHover={{ y: -4 }}
             onClick={() => handleTeamClick('bride')}
@@ -136,7 +136,7 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
             </div>
 
             <button className="mt-5 w-full rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 py-3 text-center text-xs font-bold text-white shadow-md shadow-rose-600/20 transition-all group-hover:from-rose-700 group-hover:to-pink-700">
-              Join Team Amrutha (Rose) →
+              Join Team Amritha (Rose) →
             </button>
           </motion.div>
 
