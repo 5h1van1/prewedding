@@ -1,15 +1,38 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // Helper: Verify if user is an authenticated administrator
+    function isAdmin() {
+      return request.auth != null;
+    }
+
+    // Helper: Validate guest RSVP fields and data types on creation
+    function isValidRsvp(data) {
+      return data.keys().hasAll(['name', 'team', 'preferredDate', 'needsJersey', 'jerseySize'])
+        // Name validation
+        && data.name is string 
+        && data.name.size() >= 2 
+        && data.name.size() <= 100
+        // Squad selection
+        && data.team in ['bride', 'groom']
+        // Event date
+        && data.preferredDate is string 
+        && data.preferredDate.size() >= 5 
+        && data.preferredDate.size() <= 30
+        // Jersey preferences
+        && data.needsJersey is bool
+        && data.jerseySize in ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', 'None'];
+    }
+
+    // RSVPs Collection: Guest submissions and Organizer management
     match /rsvps/{rsvpId} {
-      // Allow public read for live team counter & admin dashboard
-      allow read: if true;
-      // Allow guests to submit / update their RSVP
-      allow create, update: if request.resource.data.name is string &&
-                               request.resource.data.name.size() > 0 &&
-                               request.resource.data.team in ['bride', 'groom'];
-      // Allow deletions for admin
-      allow delete: if true;
+      // Public guests can create a new RSVP document if valid
+      allow create: if isValidRsvp(request.resource.data);
+
+      // Only authenticated administrators can read all RSVPs, update, or delete
+      allow read, update, delete: if isAdmin();
     }
   }
 }

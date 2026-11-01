@@ -1,4 +1,4 @@
-import { saveRsvp, subscribeToRsvps, deleteRsvp, resetDemoData, generateDocId } from './src/services/db.js';
+import { saveRsvp, subscribeToRsvps, deleteRsvp, resetDemoData } from './src/services/db.js';
 
 async function testRsvpFlow() {
   console.log('🧪 Starting RSVP Flow and Database Verification...\n');
@@ -11,7 +11,7 @@ async function testRsvpFlow() {
   console.log(`✓ Initial pre-seeded demo RSVPs count: ${currentRsvps.length}`);
   const initialCount = currentRsvps.length;
 
-  // 1. Submit a new RSVP
+  // 1. Submit a new RSVP with unique doc ID
   console.log('Submitting new RSVP for "Tanmay Bhat"...');
   const res1 = await saveRsvp({
     name: 'Tanmay Bhat',
@@ -22,16 +22,21 @@ async function testRsvpFlow() {
   });
   console.log('✓ Result 1:', res1);
 
+  if (!res1.success || !res1.docId) {
+    throw new Error('Expected saveRsvp to return success: true and a valid docId');
+  }
+
   // Check list
-  const found1 = currentRsvps.find((r) => r.id === generateDocId('Tanmay Bhat'));
-  console.log('✓ Found inserted RSVP:', found1 ? `${found1.name} (Team: ${found1.team}, Jersey: ${found1.jerseySize})` : 'NOT FOUND');
+  const found1 = currentRsvps.find((r) => r.id === res1.docId);
+  console.log('✓ Found inserted RSVP:', found1 ? `${found1.name} (ID: ${found1.id}, Team: ${found1.team}, Jersey: ${found1.jerseySize})` : 'NOT FOUND');
   if (currentRsvps.length !== initialCount + 1) {
     throw new Error(`Expected count to increase by 1, but got ${currentRsvps.length}`);
   }
 
-  // 2. Resubmit with same name to test duplicate prevention & update behavior
+  // 2. Resubmit with same docId to test update behavior
   console.log('\nResubmitting for "Tanmay Bhat" with changed squad (Team Bride) and size (L)...');
   const res2 = await saveRsvp({
+    id: res1.docId,
     name: 'Tanmay Bhat',
     team: 'bride',
     preferredDate: '2027-01-28',
@@ -40,7 +45,7 @@ async function testRsvpFlow() {
   });
   console.log('✓ Result 2 (isUpdate):', res2);
 
-  const found2 = currentRsvps.find((r) => r.id === generateDocId('Tanmay Bhat'));
+  const found2 = currentRsvps.find((r) => r.id === res1.docId);
   console.log('✓ Found updated RSVP:', found2 ? `${found2.name} (Team: ${found2.team}, Size: ${found2.jerseySize}, Date: ${found2.preferredDate})` : 'NOT FOUND');
 
   if (currentRsvps.length !== initialCount + 1) {
@@ -49,7 +54,7 @@ async function testRsvpFlow() {
   if (found2.team !== 'bride' || found2.jerseySize !== 'L') {
     throw new Error('RSVP did not update with new values!');
   }
-  console.log('✓ Duplicate prevention confirmed: 0 duplicate documents created, record was correctly updated.');
+  console.log('✓ Update verified: Record was correctly updated using unique document ID.');
 
   // 3. Verify Admin Calculations
   console.log('\nVerifying Admin metrics calculations:');
@@ -62,7 +67,7 @@ async function testRsvpFlow() {
   console.log(`- Size L Jerseys Needed: ${jerseyLCount}`);
 
   // Clean up test entry
-  await deleteRsvp(generateDocId('Tanmay Bhat'));
+  await deleteRsvp(res1.docId);
   console.log(`✓ Cleaned up test record. Count is now back to: ${currentRsvps.length}`);
 
   unsub();

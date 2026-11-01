@@ -40,24 +40,35 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
     }
   }, [initialTeam]);
 
-  // Check if name matches an existing RSVP to inform user they are editing
+  // Check if guest previously submitted on this device or matches existing RSVP
   useEffect(() => {
-    if (name.trim().length >= 3) {
-      const docId = generateDocId(name);
-      const matched = existingRsvps.find((r) => r.id === docId);
+    try {
+      const saved = JSON.parse(localStorage.getItem('wedding_my_rsvp') || 'null');
+      if (saved && saved.name && name.trim().length >= 2 && saved.name.toLowerCase() === name.trim().toLowerCase()) {
+        setIsExistingEdit(true);
+        if (saved.team) setTeam(saved.team);
+        if (saved.preferredDate) setPreferredDate(saved.preferredDate);
+        if (typeof saved.needsJersey === 'boolean') setNeedsJersey(saved.needsJersey);
+        if (saved.jerseySize && saved.jerseySize !== 'None') setJerseySize(saved.jerseySize);
+        return;
+      }
+    } catch (e) {}
+
+    if (name.trim().length >= 3 && existingRsvps.length > 0) {
+      const matched = existingRsvps.find(
+        (r) => (r.name || '').toLowerCase() === name.trim().toLowerCase()
+      );
       if (matched) {
         setIsExistingEdit(true);
-        // Pre-fill existing choices for friendly UX
         if (matched.team) setTeam(matched.team);
         if (matched.preferredDate) setPreferredDate(matched.preferredDate);
         if (typeof matched.needsJersey === 'boolean') setNeedsJersey(matched.needsJersey);
         if (matched.jerseySize && matched.jerseySize !== 'None') setJerseySize(matched.jerseySize);
-      } else {
-        setIsExistingEdit(false);
+        return;
       }
-    } else {
-      setIsExistingEdit(false);
     }
+
+    setIsExistingEdit(false);
   }, [name, existingRsvps]);
 
   // Determine total steps: 4 if jersey needed, 3 if not needed
@@ -118,7 +129,17 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
     setErrorMsg('');
 
     try {
+      // Check if updating guest's own previous submission on this device
+      let existingId = undefined;
+      try {
+        const saved = JSON.parse(localStorage.getItem('wedding_my_rsvp') || 'null');
+        if (saved && saved.id && (saved.name || '').toLowerCase() === name.trim().toLowerCase()) {
+          existingId = saved.id;
+        }
+      } catch (e) {}
+
       const payload = {
+        id: existingId,
         name: name.trim(),
         team,
         preferredDate,
@@ -129,11 +150,15 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
       const result = await saveRsvp(payload);
 
       if (result.success) {
+        try {
+          localStorage.setItem('wedding_my_rsvp', JSON.stringify({ ...payload, id: result.docId }));
+        } catch (e) {}
+
         if (onRsvpSuccess) {
-          onRsvpSuccess(payload);
+          onRsvpSuccess({ ...payload, docId: result.docId, isCloud: result.isCloud });
         }
       } else {
-        setErrorMsg('Unable to save RSVP. Please try again.');
+        setErrorMsg(result.error || 'Failed to submit RSVP to the cloud database. Please check your internet connection.');
       }
     } catch (err) {
       console.error('RSVP submit error', err);

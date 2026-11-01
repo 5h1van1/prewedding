@@ -28,9 +28,14 @@ export default function App() {
 
   // Subscribe to real-time database (Firestore / Local fallback)
   useEffect(() => {
-    const unsubscribe = subscribeToRsvps((list) => {
-      setRsvps(list || []);
-    });
+    const unsubscribe = subscribeToRsvps(
+      (list) => {
+        setRsvps(list || []);
+      },
+      (err) => {
+        // Expected for unauthenticated public guests under strict Firestore rules
+      }
+    );
 
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
