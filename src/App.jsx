@@ -79,7 +79,7 @@ export default function App() {
 
   // Render Public Invitation Landing Page
   return (
-    <div className="min-h-screen bg-festive-cream text-slate-800 font-sans selection:bg-turf-600 selection:text-white">
+    <div className="min-h-screen bg-[#fffaf5] text-stone-800 font-sans selection:bg-rose-500 selection:text-white">
       {/* Navigation */}
       <Navbar
         onNavigateToAdmin={handleNavigateToAdmin}

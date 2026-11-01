@@ -113,14 +113,14 @@ export default function StoryGallery() {
                   key={i}
                   onClick={() => setCarouselIndex(i)}
                   className={`h-2 rounded-full transition-all ${
-                    carouselIndex === i ? 'w-6 bg-turf-600' : 'w-2 bg-slate-300'
+                    carouselIndex === i ? 'w-7 bg-gradient-to-r from-rose-600 to-amber-500' : 'w-2 bg-stone-300'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
             </div>
-            <span className="text-xs font-mono font-medium text-slate-500">
-              {carouselIndex + 1} of {gallery.length}
+            <span className="text-xs font-serif italic text-stone-500">
+              Moment {carouselIndex + 1} of {gallery.length}
             </span>
           </div>
 
@@ -132,7 +132,7 @@ export default function StoryGallery() {
                 onClick={() => setCarouselIndex(i)}
                 className={`relative aspect-video overflow-hidden rounded-xl border-2 transition-all ${
                   carouselIndex === i
-                    ? 'border-turf-600 ring-2 ring-turf-500/30 scale-102'
+                    ? 'border-rose-600 ring-2 ring-rose-400/30 scale-102'
                     : 'border-transparent opacity-70 hover:opacity-100'
                 }`}
               >

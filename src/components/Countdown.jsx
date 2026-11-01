@@ -48,21 +48,21 @@ export default function Countdown() {
         {timeUnits.map((unit, idx) => (
           <div
             key={idx}
-            className="flex-1 flex flex-col items-center justify-center rounded-xl bg-slate-900/80 backdrop-blur-md px-2 py-2 sm:py-2.5 border border-amber-400/30 shadow-md shadow-black/20"
+            className="flex-1 flex flex-col items-center justify-center rounded-2xl bg-stone-900/85 backdrop-blur-md px-2 py-2.5 sm:py-3 border border-amber-300/40 shadow-lg shadow-black/25"
           >
-            <span className="font-mono text-xl sm:text-2xl font-black text-amber-300 tracking-tight leading-none">
+            <span className="font-serif text-xl sm:text-2xl font-black text-amber-300 tracking-tight leading-none">
               {String(unit.value).padStart(2, '0')}
             </span>
-            <span className="text-[9px] sm:text-[10px] font-bold text-slate-300 tracking-wider mt-1 uppercase">
+            <span className="text-[9px] sm:text-[10px] font-bold text-rose-200/80 tracking-widest mt-1 uppercase">
               {unit.label}
             </span>
           </div>
         ))}
       </div>
-      <div className="mt-2 text-center">
-        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-amber-200/90 bg-amber-950/40 px-2.5 py-0.5 rounded-full border border-amber-500/20">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          Countdown to Match Day Kick-off
+      <div className="mt-2.5 text-center">
+        <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-amber-200/90 bg-stone-900/70 px-3 py-0.5 rounded-full border border-amber-400/30">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"></span>
+          <span>Countdown to the Wedding Celebrations</span>
         </span>
       </div>
     </div>

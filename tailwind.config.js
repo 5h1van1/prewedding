@@ -7,20 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        turf: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
-          950: '#052e16',
+        // Luxury Rose Palette
+        rose: {
+          50: '#fff1f2',
+          100: '#ffe4e6',
+          200: '#fecdd3',
+          300: '#fda4af',
+          400: '#fb7185',
+          500: '#f43f5e',
+          600: '#e11d48',
+          700: '#be185d',
+          800: '#9f1239',
+          900: '#881337',
+          950: '#4c0519',
         },
+        // Champagne & Warm Gold Palette
         gold: {
+          50: '#fffdf5',
           100: '#fef3c7',
           200: '#fde68a',
           300: '#fcd34d',
@@ -28,13 +31,19 @@ export default {
           500: '#f59e0b',
           600: '#d97706',
           700: '#b45309',
-          goldleaf: '#d4af37',
+          800: '#92400e',
+          900: '#78350f',
+          foil: '#d4af37',
+          champagne: '#f7e7ce',
+          metallic: '#c5a059',
         },
-        festive: {
-          cream: '#fdfbf7',
-          warmgray: '#f5f2eb',
-          champagne: '#faebd7',
-          dark: '#18181b',
+        // Warm Wedding Ivory & Backgrounds
+        wedding: {
+          ivory: '#fdfbf7',
+          cream: '#fffaf5',
+          blush: '#fff5f5',
+          card: '#ffffff',
+          dark: '#1c1917',
         }
       },
       fontFamily: {
@@ -46,6 +55,7 @@ export default {
         'bounce-subtle': 'bounceSubtle 2s infinite ease-in-out',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'float': 'float 4s ease-in-out infinite',
+        'shimmer': 'shimmer 2.5s infinite linear',
       },
       keyframes: {
         bounceSubtle: {
@@ -55,6 +65,10 @@ export default {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-8px)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
         }
       }
     },

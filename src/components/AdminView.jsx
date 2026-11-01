@@ -310,10 +310,10 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
           <div className="rounded-2xl bg-white p-4 shadow-sm border border-slate-200 flex flex-col justify-between">
             <div className="flex items-center justify-between text-slate-500 mb-1">
               <span className="text-xs font-bold uppercase tracking-wider">Total Guests</span>
-              <Users className="h-4 w-4 text-turf-600" />
+              <Users className="h-4 w-4 text-rose-600" />
             </div>
             <div className="text-2xl sm:text-3xl font-black text-slate-900">{totalGuests}</div>
-            <span className="text-[11px] text-emerald-600 font-semibold mt-1">Confirmed RSVPs</span>
+            <span className="text-[11px] text-rose-600 font-semibold mt-1">Confirmed RSVPs</span>
           </div>
 
           {/* Card 2: Squad Split */}
@@ -408,7 +408,7 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by player name..."
-              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-xs sm:text-sm font-medium text-slate-800 placeholder-slate-400 focus:border-turf-600 focus:bg-white focus:outline-none"
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-xs sm:text-sm font-medium text-slate-800 placeholder-slate-400 focus:border-rose-500 focus:bg-white focus:outline-none"
             />
           </div>
 
@@ -483,7 +483,7 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
                   setDateFilter('all');
                   setJerseyFilter('all');
                 }}
-                className="mt-2 text-xs text-turf-700 font-bold hover:underline"
+                className="mt-2 text-xs text-rose-700 font-bold hover:underline"
               >
                 Clear all filters
               </button>
@@ -593,8 +593,8 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
                   type="text"
                   value={modalForm.name}
                   onChange={(e) => setModalForm({ ...modalForm, name: e.target.value })}
-                  placeholder="e.g. Siddharth Rao"
-                  className="w-full rounded-xl border border-slate-300 bg-slate-50 py-2.5 px-3 text-sm font-medium text-slate-900 focus:border-turf-600 focus:bg-white focus:outline-none"
+                  placeholder="e.g. Divya Nair"
+                  className="w-full rounded-xl border border-slate-300 bg-slate-50 py-2.5 px-3 text-sm font-medium text-slate-900 focus:border-rose-500 focus:bg-white focus:outline-none"
                   required
                 />
               </div>
@@ -609,8 +609,8 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
                     onChange={(e) => setModalForm({ ...modalForm, team: e.target.value })}
                     className="w-full rounded-xl border border-slate-300 bg-slate-50 py-2.5 px-3 text-xs font-semibold text-slate-900 focus:outline-none"
                   >
-                    <option value="bride">Team Bride</option>
-                    <option value="groom">Team Groom</option>
+                    <option value="bride">Team Amrutha (Rose)</option>
+                    <option value="groom">Team Sanjay (Gold)</option>
                   </select>
                 </div>
 
@@ -691,7 +691,7 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
                 </button>
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 rounded-xl bg-turf-600 hover:bg-turf-700 py-2 px-5 text-xs font-bold text-white shadow-md shadow-turf-900/20"
+                  className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-700 hover:to-amber-700 py-2 px-5 text-xs font-bold text-white shadow-md shadow-rose-900/20"
                 >
                   <Save className="h-3.5 w-3.5" />
                   <span>{editingRsvp ? 'Save Changes' : 'Add Guest'}</span>

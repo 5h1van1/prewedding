@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { config } from '../config';
-import { Shirt, Trophy, Flame, Cake, Utensils, Sparkles, Clock } from 'lucide-react';
+import { Shirt, Trophy, Flame, Cake, Utensils, Sparkles, Clock, Heart } from 'lucide-react';
 
 const iconMap = {
   Shirt: Shirt,
@@ -30,30 +30,28 @@ export default function Timeline() {
   }
 
   return (
-    <section id="timeline" className="py-12 sm:py-16 px-4 sm:px-6 bg-slate-900 text-white relative overflow-hidden">
-      {/* Background Turf Field Lines Effect */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white/40 -translate-y-1/2" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-white/40 rounded-full" />
-      </div>
+    <section id="timeline" className="py-14 sm:py-20 px-4 sm:px-6 bg-[#fffdfa] relative overflow-hidden">
+      {/* Decorative Warm Ambient Glows */}
+      <div className="absolute top-1/3 left-0 w-80 h-80 bg-rose-200/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-amber-200/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="mx-auto max-w-3xl relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-turf-900/80 text-emerald-300 border border-emerald-500/30 px-3 py-1 text-xs font-bold uppercase tracking-wider mb-2">
-            <Clock className="h-3.5 w-3.5 text-emerald-400" />
-            <span>Evening Schedule</span>
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-100/80 text-amber-900 border border-amber-300 px-3.5 py-1 text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
+            <Clock className="h-3.5 w-3.5 text-amber-600" />
+            <span>Itinerary & Celebrations</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-serif">
             Plan of the Evening
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-md mx-auto">
-            From jersey toss to final overs and dinner — here is how the magic unfolds under the floodlights.
+          <p className="text-xs sm:text-sm text-stone-600 mt-2 max-w-md mx-auto leading-relaxed">
+            From welcome drinks and jersey gifts to boundary sixers, cake cutting, and dinner under warm fairy lights.
           </p>
         </div>
 
         {/* Timeline Items */}
-        <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-2.5 sm:before:left-3.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-emerald-400 before:via-amber-400 before:to-emerald-500">
+        <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-2.5 sm:before:left-3.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-rose-400 before:via-amber-400 before:to-rose-400">
           {items.map((item, index) => {
             const IconComponent = iconMap[item.icon] || Trophy;
 
@@ -68,33 +66,35 @@ export default function Timeline() {
               >
                 {/* Timeline node icon */}
                 <div
-                  className={`absolute -left-6 sm:-left-8 top-1.5 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border-2 transition-transform group-hover:scale-110 ${
+                  className={`absolute -left-6 sm:-left-8 top-2 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border-2 transition-transform group-hover:scale-110 shadow-sm ${
                     item.isSurprise
-                      ? 'bg-amber-500 border-amber-300 text-slate-950 animate-pulse'
+                      ? 'bg-amber-400 border-amber-300 text-stone-950 animate-pulse ring-2 ring-amber-300/40'
                       : item.highlight
-                      ? 'bg-emerald-500 border-emerald-300 text-slate-950'
-                      : 'bg-slate-800 border-slate-600 text-slate-200'
+                      ? 'bg-rose-600 border-rose-300 text-white shadow-rose-600/30 ring-2 ring-rose-200'
+                      : 'bg-white border-amber-300 text-amber-700'
                   }`}
                 >
                   <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </div>
 
-                {/* Content Box */}
+                {/* Content Box with Elegant Wedding Styling */}
                 <div
-                  className={`rounded-2xl p-4 sm:p-5 transition-all ${
+                  className={`rounded-3xl p-5 sm:p-6 transition-all ${
                     item.isSurprise
-                      ? 'bg-gradient-to-r from-amber-950/70 via-slate-800 to-amber-950/70 border border-amber-400/50 shadow-lg shadow-amber-950/50'
+                      ? 'bg-gradient-to-r from-amber-50/90 via-white to-amber-50/70 border-2 border-amber-300 shadow-lg shadow-amber-900/5'
                       : item.highlight
-                      ? 'bg-gradient-to-r from-turf-950/90 to-slate-800/90 border border-emerald-500/40 shadow-lg shadow-emerald-950/40'
-                      : 'bg-slate-800/70 border border-slate-700/60 hover:border-slate-600'
+                      ? 'bg-gradient-to-r from-rose-50/90 via-white to-amber-50/50 border-2 border-rose-300/80 shadow-lg shadow-rose-900/5'
+                      : 'bg-white border border-stone-200/80 hover:border-amber-300 shadow-sm'
                   }`}
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <span
-                      className={`inline-flex items-center gap-1 font-mono text-xs font-bold px-2 py-0.5 rounded-full ${
+                      className={`inline-flex items-center gap-1.5 font-serif text-xs font-bold px-3 py-1 rounded-full ${
                         item.isSurprise
-                          ? 'bg-amber-400 text-slate-900 font-extrabold'
-                          : 'bg-slate-700 text-amber-300'
+                          ? 'bg-amber-400 text-stone-950 font-bold'
+                          : item.highlight
+                          ? 'bg-rose-100 text-rose-900'
+                          : 'bg-amber-50 text-amber-900 border border-amber-200'
                       }`}
                     >
                       <Clock className="h-3 w-3" />
@@ -102,23 +102,23 @@ export default function Timeline() {
                     </span>
 
                     {item.highlight && !item.isSurprise && (
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-500/30">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 bg-rose-100/70 px-2.5 py-0.5 rounded-full border border-rose-300">
                         ⚡ Main Match
                       </span>
                     )}
 
                     {item.isSurprise && (
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-400/50">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-900 bg-amber-200 px-2.5 py-0.5 rounded-full border border-amber-400">
                         ✨ Surprise Act
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  <h3 className="text-lg font-bold text-stone-900 font-serif group-hover:text-rose-700 transition-colors">
                     {item.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
                     {item.description}
                   </p>
                 </div>

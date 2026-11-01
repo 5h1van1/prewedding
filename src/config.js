@@ -5,20 +5,21 @@
  * ALL personal details, dates, venue info, story captions, jersey size chart,
  * and event text can be customized right here!
  *
- * Simply edit the values below to update the entire invitation website.
+ * Theme: Rose & Gold Wedding Aesthetic (Amrutha & Sanjay)
  */
 
 export const config = {
   // Couple Information
   couple: {
-    brideName: "Ananya",
-    groomName: "Rohan",
-    brideNickname: "The Spin Queen",
-    groomNickname: "The Power Hitter",
-    hashtag: "#AnanyaBowledRohan",
-    tagline: "Before the vows, let's settle the score on the pitch! 🏏✨",
-    heroSubtitle: "A relaxed, fun-filled pre-wedding cricket face-off, tug-of-war, and dinner under the floodlights.",
-    heroImage: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1600&q=80",
+    brideName: "Amrutha",
+    groomName: "Sanjay",
+    brideNickname: "The Rose Queen",
+    groomNickname: "The Golden Striker",
+    hashtag: "#AmruthaAndSanjay",
+    tagline: "Before we step into wedding elegance, let's play our hearts out! 💍✨",
+    heroSubtitle: "A warm, joyful pre-wedding evening filled with friendly matches, laughter, custom jerseys, and dinner under glowing fairy lights.",
+    // Elegant couple portrait with warm golden rose tones
+    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80",
     ringPhoto: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=80",
   },
 
@@ -49,100 +50,99 @@ export const config = {
 
   // Venue Details
   venue: {
-    name: "Kick-Off Arena & Cricket Turf",
+    name: "The Pavilion Arena & Sports Turf",
     shortLocation: "Bandra West, Mumbai",
     address: "Off Linking Road, Next to St. Andrew's Grounds, Bandra West, Mumbai 400050",
     googleMapsUrl: "https://maps.google.com/?q=Bandra+West+Mumbai+Cricket+Turf",
     embedQuery: "Bandra West Mumbai",
-    dressCode: "Athletic / Sneakers Chic (Custom jerseys will be provided!)",
-    parkingNote: "Free parking and valet available at the venue gates.",
-    turfType: "FIFA-grade all-weather turf with LED stadium floodlights",
+    dressCode: "Chic Athletic / Sneakers & Party Casual (Custom jerseys provided!)",
+    parkingNote: "Complimentary valet and guest parking available at the arena gates.",
+    turfType: "All-weather turf with golden canopy floodlights & luxury dugout lounge",
   },
 
-  // Teams Configuration (Team Bride vs Team Groom)
+  // Teams Configuration: Rose vs Gold Wedding Theme
   teams: {
     bride: {
       id: "bride",
-      name: "Team Bride",
-      subtitle: "The Sassy Sixers & Spin Masters",
-      captain: "Captain Ananya",
-      colorName: "Rose Gold & Blush",
-      primaryHex: "#e11d48", // rose-600
-      secondaryHex: "#ffe4e6", // rose-100
-      badgeGradient: "from-rose-500 to-pink-600",
-      accentBg: "bg-rose-50 border-rose-200 text-rose-800",
-      icon: "Crown", // Lucide icon
-      motto: "Grace, glam, and clean boundary strokes!",
-      jerseyDesign: "Rose pink sports mesh with golden squad numbers",
+      name: "Team Amrutha",
+      subtitle: "The Rose Gold Squad",
+      captain: "Captain Amrutha",
+      colorName: "Dusty Rose & Blush",
+      primaryHex: "#be185d", // Rose gold / deep blush
+      secondaryHex: "#fff1f2", // Rose 50
+      badgeGradient: "from-rose-500 via-pink-600 to-rose-700",
+      accentBg: "bg-rose-50 border-rose-200 text-rose-900",
+      icon: "Crown",
+      motto: "Grace, glam, and beautiful boundary sixers!",
+      jerseyDesign: "Dusty rose dri-fit with metallic gold cursive print",
     },
     groom: {
       id: "groom",
-      name: "Team Groom",
-      subtitle: "The Power Hitters & Pace Attack",
-      captain: "Captain Rohan",
-      colorName: "Royal Cobalt & Navy",
-      primaryHex: "#2563eb", // blue-600
-      secondaryHex: "#dbeafe", // blue-100
-      badgeGradient: "from-blue-600 to-indigo-700",
-      accentBg: "bg-blue-50 border-blue-200 text-blue-800",
-      icon: "Zap", // Lucide icon
-      motto: "Maximum power, high energy, and no mercy on the pitch!",
-      jerseyDesign: "Royal blue dri-fit with metallic white accents",
+      name: "Team Sanjay",
+      subtitle: "The Champagne Gold Army",
+      captain: "Captain Sanjay",
+      colorName: "Champagne Gold & Warm Amber",
+      primaryHex: "#d97706", // Warm amber gold
+      secondaryHex: "#fffbeb", // Amber 50
+      badgeGradient: "from-amber-500 via-yellow-600 to-amber-700",
+      accentBg: "bg-amber-50 border-amber-200 text-amber-950",
+      icon: "Sparkles",
+      motto: "Pure power, cheerful vibes, and unforgettable memories!",
+      jerseyDesign: "Champagne gold dri-fit with rich amber lettering",
     },
   },
 
-  // Evening Timeline
+  // Evening Timeline with Elegant Wedding Tone
   timeline: [
     {
       step: 1,
       time: "5:00 PM",
-      title: "Arrival & Jersey Handover",
-      description: "Check in, collect your personalized match jersey, hydrate with fresh mocktails, and lace up your sneakers.",
+      title: "Welcome Drinks & Jersey Gifting",
+      description: "Arrival cocktails, mocktails, collecting your customized match jersey, and lacing up your sneakers.",
       icon: "Shirt",
       highlight: false,
     },
     {
       step: 2,
       time: "5:45 PM",
-      title: "The Big Clash: Team Bride vs Team Groom",
-      description: "An electrifying 8-a-side box cricket match with umpire reviews, mystery powerplay overs, and sideline cheer squads!",
+      title: "The Friendly Clash: Team Amrutha vs Team Sanjay",
+      description: "A fun-filled 8-a-side box cricket match with mystery powerplays, hilarious umpire reviews, and cheer squads!",
       icon: "Trophy",
       highlight: true,
     },
     {
       step: 3,
       time: "6:45 PM",
-      title: "The Ultimate Tug-of-War",
-      description: "Bride's side vs Groom's side on the center turf line! Raw strength, loud cheers, and eternal bragging rights.",
+      title: "The Great Tug-of-War Battle",
+      description: "Bride's side vs Groom's side on the center pitch! Cheerful rivalry, high spirits, and endless laughter.",
       icon: "Flame",
       highlight: false,
     },
     {
       step: 4,
       time: "7:15 PM",
-      title: "Trophy Ceremony & Cake Cutting",
-      description: "Crowing the Turf Champions, popping confetti, cutting the celebratory turf cake, and clicking squad pictures.",
+      title: "Celebration Cake Cutting & Toasts",
+      description: "Popping confetti, toasting to Amrutha & Sanjay, and snapping unforgettable squad photos.",
       icon: "Cake",
       highlight: false,
     },
     {
       step: 5,
       time: "7:30 PM",
-      title: "Dinner & Post-Match Chill",
-      description: "Gourmet food stations, sliders, live chaat, woodfired bites, music, and chilling out as the wedding week begins.",
+      title: "Dinner & Post-Match Soirée",
+      description: "Gourmet food stations, sliders, live chaat, woodfired bites, music, and chilling out as wedding festivities begin.",
       icon: "Utensils",
       highlight: false,
     },
   ],
 
   // Hidden, easy-to-enable "Surprise Segment"
-  // Toggle enabled to TRUE whenever the bride & groom decide the surprise function!
   surpriseSegment: {
-    enabled: false, // Set to true to automatically insert this into the timeline
-    positionAfterStep: 3, // Shows right after Tug-of-War
+    enabled: false,
+    positionAfterStep: 3,
     time: "7:00 PM",
     title: "Surprise Sangeet Teaser & Dance Battle 💃🕺",
-    description: "An impromptu 10-minute flashmob & dance face-off before we head to the cake!",
+    description: "An impromptu 10-minute flashmob & couple dance face-off before we cut the cake!",
     icon: "Sparkles",
   },
 
@@ -161,50 +161,50 @@ export const config = {
   gallery: [
     {
       id: 1,
-      title: "Where It All Started",
-      caption: "Met at a college sports fest 6 years ago — Rohan tried to bowl Ananya out, and she hit him for a 6 over long-on!",
+      title: "How We Met",
+      caption: "A chance meeting that turned into endless conversations, shared laughter, and a bond that grew stronger every day.",
       image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80",
-      tag: "First Encounter",
+      tag: "The Beginning",
     },
     {
       id: 2,
-      title: "Sunday Box Cricket Sundays",
-      caption: "Countless weekend matches where rivalries were born and post-match chai bonded us for life.",
+      title: "Playful Weekends",
+      caption: "From board games and box matches to late-night drives and coffee stops, every moment with Sanjay is a joyful adventure.",
       image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80",
-      tag: "Turf Memories",
+      tag: "Fun Memories",
     },
     {
       id: 3,
-      title: "The Sunset Proposal",
-      caption: "Under the golden sky in Goa, Rohan bent the knee with the ring hidden inside a mini cricket ball.",
+      title: "The Golden Proposal",
+      caption: "Under a warm sunset sky, Sanjay asked the most magical question of all — and Amrutha said the easiest 'Yes' of her life.",
       image: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1000&q=80",
       tag: "She Said Yes!",
     },
     {
       id: 4,
-      title: "Ready for the Big Match",
-      caption: "Before the sherwanis and lehengas, we just want to jump into jerseys and play our hearts out with you all!",
-      image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80",
-      tag: "Turf Day Countdown",
+      title: "Ready to Celebrate with You",
+      caption: "Before the traditional rituals, we want to kick back, wear our jerseys, and make magical memories with our favorite people!",
+      image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
+      tag: "Pre-Wedding Vibes",
     },
   ],
 
   // Organizers Contact Info (Footer)
   contacts: [
     {
-      role: "Team Bride Manager",
-      name: "Pooja (Bride's Sister)",
+      role: "Bride's Side Coordinator",
+      name: "Divya (Bride's Sister)",
       phone: "+91 98765 43210",
       whatsapp: "919876543210",
     },
     {
-      role: "Team Groom Captain Assistant",
-      name: "Kabir (Groom's Best Friend)",
+      role: "Groom's Side Coordinator",
+      name: "Rahul (Groom's Brother)",
       phone: "+91 91234 56789",
       whatsapp: "919123456789",
     },
   ],
 
   // WhatsApp Share invitation message template
-  whatsAppInviteText: "Hey! 🏏✨ Join us for Ananya & Rohan's Pre-Wedding Turf Day! We're having an epic cricket clash, custom jerseys, tug-of-war, and dinner before the wedding. Pick your team and RSVP here: ",
+  whatsAppInviteText: "Hey! 💍✨ Join us for Amrutha & Sanjay's Pre-Wedding Celebration & Turf Match! Custom jerseys, friendly games, and dinner under golden lights. Pick your squad and RSVP here: ",
 };

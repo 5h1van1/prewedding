@@ -10,57 +10,68 @@
   
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #fcfaf7;
-    color: #1e293b;
+    background-color: #fffaf5;
+    color: #292524;
     overflow-x: hidden;
   }
 }
 
-/* Custom Turf & Elegant Texture */
-.turf-pattern {
-  background-color: #0f4a25;
-  background-image: 
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 40px, transparent 40px, transparent 80px),
-    radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.15), transparent 70%);
-}
-
-.gold-shimmer {
-  background: linear-gradient(135deg, #fef08a 0%, #d4af37 50%, #b45309 100%);
+/* Luxury Wedding Rose & Gold Accents */
+.rose-gold-shimmer {
+  background: linear-gradient(135deg, #fbcfe8 0%, #fda4af 30%, #fef08a 70%, #f59e0b 100%);
 }
 
 .text-gold-gradient {
-  background: linear-gradient(135deg, #d97706, #b45309);
+  background: linear-gradient(135deg, #d97706, #b45309, #d4af37);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Glassmorphism helpers */
+.text-rose-gold-gradient {
+  background: linear-gradient(135deg, #be185d 0%, #e11d48 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-rose-gold {
+  border-image: linear-gradient(to right, #fda4af, #fcd34d, #fda4af) 1;
+}
+
+/* Glassmorphism helpers for wedding elegance */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(254, 205, 211, 0.6);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(190, 24, 93, 0.08);
 }
 
 .glass-dark {
-  background: rgba(15, 23, 42, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(28, 25, 23, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(254, 205, 211, 0.15);
 }
 
-/* Custom modern scrollbar */
+/* Custom modern scrollbar with rose gold hint */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #fff5f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #fbcfe8;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #f472b6;
 }

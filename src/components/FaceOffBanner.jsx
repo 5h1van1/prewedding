@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { config } from '../config';
-import { Crown, Zap, Flame, Users, Shirt } from 'lucide-react';
+import { Crown, Sparkles, Users, Shirt, Heart } from 'lucide-react';
 
 export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
   const brideCount = rsvps.filter((r) => r.team === 'bride').length;
@@ -22,42 +22,42 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
   };
 
   return (
-    <section id="faceoff" className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-b from-festive-cream via-white to-festive-cream">
+    <section id="faceoff" className="py-14 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-[#fffaf5] via-[#fff5f6] to-[#fffaf5]">
       <div className="mx-auto max-w-4xl">
         {/* Section Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 px-3 py-1 text-xs font-bold uppercase tracking-wider mb-2">
-            <Flame className="h-3.5 w-3.5 text-amber-600 animate-pulse" />
-            <span>The Great Turf Rivalry</span>
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-rose-100/80 text-rose-900 border border-rose-300 px-3.5 py-1 text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
+            <Heart className="h-3.5 w-3.5 text-rose-600 fill-rose-600" />
+            <span>The Joyful Celebration Match</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Team Bride <span className="text-amber-500 font-serif italic font-light">vs</span> Team Groom
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-serif">
+            {config.teams.bride.name} <span className="text-amber-500 font-script font-normal text-4xl sm:text-5xl">&</span> {config.teams.groom.name}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-md mx-auto">
-            Whose side are you backing? Tap your squad to join the lineup. Live squad counter updates automatically!
+          <p className="text-xs sm:text-sm text-stone-600 mt-2 max-w-md mx-auto leading-relaxed">
+            Choose your side for the celebration match! Whether you're cheering for Amrutha's Rose Squad or Sanjay's Gold Squad, custom jerseys await you!
           </p>
         </div>
 
-        {/* Live Tug-of-War Percentage Bar */}
-        <div className="mb-6 rounded-2xl bg-white p-4 shadow-sm border border-slate-200/80">
-          <div className="flex items-center justify-between text-xs sm:text-sm font-bold mb-2">
-            <div className="flex items-center gap-1.5 text-rose-600">
-              <Crown className="h-4 w-4" />
+        {/* Live Squad Balance Bar */}
+        <div className="mb-8 rounded-3xl bg-white/90 backdrop-blur-md p-5 shadow-lg shadow-rose-900/5 border border-rose-200/60">
+          <div className="flex items-center justify-between text-xs sm:text-sm font-bold mb-2.5">
+            <div className="flex items-center gap-1.5 text-rose-700">
+              <Crown className="h-4 w-4 text-rose-600" />
               <span>{config.teams.bride.name} ({brideCount})</span>
             </div>
-            <div className="text-[11px] font-mono text-slate-400 font-medium">
+            <div className="text-[11px] font-serif uppercase tracking-widest text-amber-700 font-semibold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
               LIVE LINEUP
             </div>
-            <div className="flex items-center gap-1.5 text-blue-600">
+            <div className="flex items-center gap-1.5 text-amber-700">
               <span>({groomCount}) {config.teams.groom.name}</span>
-              <Zap className="h-4 w-4" />
+              <Sparkles className="h-4 w-4 text-amber-500" />
             </div>
           </div>
 
-          {/* Tug Bar */}
-          <div className="h-4 w-full overflow-hidden rounded-full bg-slate-100 flex p-0.5 shadow-inner">
+          {/* Rose & Gold Progress Bar */}
+          <div className="h-4 w-full overflow-hidden rounded-full bg-stone-100 flex p-0.5 shadow-inner border border-stone-200/70">
             <motion.div
-              className="h-full rounded-l-full bg-gradient-to-r from-rose-500 to-pink-500 transition-all duration-700 relative"
+              className="h-full rounded-l-full bg-gradient-to-r from-rose-500 to-pink-600 transition-all duration-700 relative"
               style={{ width: `${bridePercentage}%` }}
             >
               {bridePercentage > 15 && (
@@ -67,7 +67,7 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
               )}
             </motion.div>
             <motion.div
-              className="h-full rounded-r-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-700 relative"
+              className="h-full rounded-r-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition-all duration-700 relative"
               style={{ width: `${groomPercentage}%` }}
             >
               {groomPercentage > 15 && (
@@ -77,116 +77,116 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
               )}
             </motion.div>
           </div>
-          <div className="mt-2 text-center text-[11px] text-slate-400">
+          <div className="mt-2.5 text-center text-xs text-stone-500 font-serif italic">
             {brideCount === groomCount ? (
-              <span>Scores are tied! Next RSVP breaks the deadlock.</span>
+              <span>Squad numbers are equal! Next RSVP takes the lead. ✨</span>
             ) : brideCount > groomCount ? (
-              <span className="text-rose-600 font-semibold">Team Bride is leading the squad draft! 🔥</span>
+              <span className="text-rose-700 font-medium">Team Amrutha's Rose Squad has the bigger cheer squad right now! 🌸</span>
             ) : (
-              <span className="text-blue-600 font-semibold">Team Groom is dominating the turf numbers! ⚡</span>
+              <span className="text-amber-800 font-medium">Team Sanjay's Gold Squad is shining with strong player numbers! 👑</span>
             )}
           </div>
         </div>
 
-        {/* Team Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          {/* Team Bride Card */}
+        {/* Squad Cards Grid: Rose vs Gold */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          {/* Team Amrutha (Dusty Rose & Blush) */}
           <motion.div
-            whileHover={{ y: -3 }}
+            whileHover={{ y: -4 }}
             onClick={() => handleTeamClick('bride')}
-            className="group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-rose-200 bg-gradient-to-b from-rose-50/70 via-white to-rose-50/40 p-5 shadow-md shadow-rose-900/5 transition-all hover:border-rose-400 hover:shadow-lg"
+            className="group relative cursor-pointer overflow-hidden rounded-3xl border-2 border-rose-200 bg-gradient-to-b from-rose-50/80 via-white to-rose-50/40 p-6 shadow-md shadow-rose-900/5 transition-all hover:border-rose-400 hover:shadow-xl"
           >
-            <div className="absolute top-0 right-0 rounded-bl-xl bg-gradient-to-r from-rose-500 to-pink-600 px-3 py-1 text-[11px] font-bold text-white shadow-sm">
+            <div className="absolute top-0 right-0 rounded-bl-2xl bg-gradient-to-r from-rose-500 to-pink-600 px-3.5 py-1 text-[11px] font-bold text-white shadow-sm">
               {config.teams.bride.captain}
             </div>
 
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-rose-500 to-pink-600 text-white shadow-md shadow-rose-500/20">
-                <Crown className="h-6 w-6" />
+            <div className="flex items-center gap-3.5 mb-3.5">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-rose-500 via-pink-600 to-rose-700 text-white shadow-md shadow-rose-500/20">
+                <Crown className="h-6 w-6 text-amber-200" />
               </div>
               <div>
-                <h3 className="text-lg font-black text-rose-950 flex items-center gap-1.5">
+                <h3 className="text-xl font-extrabold text-rose-950 font-serif">
                   {config.teams.bride.name}
                 </h3>
-                <p className="text-xs font-medium text-rose-700">
+                <p className="text-xs font-semibold text-rose-700">
                   {config.teams.bride.subtitle}
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-slate-600 italic mb-4">
+            <p className="text-xs text-stone-600 font-serif italic mb-4">
               "{config.teams.bride.motto}"
             </p>
 
-            <div className="space-y-1.5 border-t border-rose-100 pt-3 text-xs text-slate-600">
+            <div className="space-y-2 border-t border-rose-100 pt-3.5 text-xs text-stone-600">
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1 text-slate-500">
+                <span className="flex items-center gap-1.5 text-stone-500">
                   <Shirt className="h-3.5 w-3.5 text-rose-500" />
                   Jersey Theme:
                 </span>
                 <span className="font-semibold text-rose-800">{config.teams.bride.colorName}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1 text-slate-500">
+                <span className="flex items-center gap-1.5 text-stone-500">
                   <Users className="h-3.5 w-3.5 text-rose-500" />
-                  Joined Players:
+                  Confirmed Players:
                 </span>
-                <span className="font-bold text-rose-600 text-sm">{brideCount} Confirmed</span>
+                <span className="font-bold text-rose-700 text-sm">{brideCount} Joined</span>
               </div>
             </div>
 
-            <button className="mt-4 w-full rounded-xl bg-rose-600 py-2.5 text-center text-xs font-bold text-white shadow-sm transition-colors group-hover:bg-rose-700">
-              Join Team Bride →
+            <button className="mt-5 w-full rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 py-3 text-center text-xs font-bold text-white shadow-md shadow-rose-600/20 transition-all group-hover:from-rose-700 group-hover:to-pink-700">
+              Join Team Amrutha (Rose) →
             </button>
           </motion.div>
 
-          {/* Team Groom Card */}
+          {/* Team Sanjay (Champagne Gold & Amber) */}
           <motion.div
-            whileHover={{ y: -3 }}
+            whileHover={{ y: -4 }}
             onClick={() => handleTeamClick('groom')}
-            className="group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-blue-200 bg-gradient-to-b from-blue-50/70 via-white to-blue-50/40 p-5 shadow-md shadow-blue-900/5 transition-all hover:border-blue-400 hover:shadow-lg"
+            className="group relative cursor-pointer overflow-hidden rounded-3xl border-2 border-amber-200 bg-gradient-to-b from-amber-50/80 via-white to-amber-50/40 p-6 shadow-md shadow-amber-900/5 transition-all hover:border-amber-400 hover:shadow-xl"
           >
-            <div className="absolute top-0 right-0 rounded-bl-xl bg-gradient-to-r from-blue-600 to-indigo-700 px-3 py-1 text-[11px] font-bold text-white shadow-sm">
+            <div className="absolute top-0 right-0 rounded-bl-2xl bg-gradient-to-r from-amber-500 to-yellow-600 px-3.5 py-1 text-[11px] font-bold text-stone-950 shadow-sm font-semibold">
               {config.teams.groom.captain}
             </div>
 
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-700 text-white shadow-md shadow-blue-500/20">
-                <Zap className="h-6 w-6" />
+            <div className="flex items-center gap-3.5 mb-3.5">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-600 to-amber-700 text-white shadow-md shadow-amber-500/20">
+                <Sparkles className="h-6 w-6 text-amber-100" />
               </div>
               <div>
-                <h3 className="text-lg font-black text-blue-950 flex items-center gap-1.5">
+                <h3 className="text-xl font-extrabold text-amber-950 font-serif">
                   {config.teams.groom.name}
                 </h3>
-                <p className="text-xs font-medium text-blue-700">
+                <p className="text-xs font-semibold text-amber-700">
                   {config.teams.groom.subtitle}
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-slate-600 italic mb-4">
+            <p className="text-xs text-stone-600 font-serif italic mb-4">
               "{config.teams.groom.motto}"
             </p>
 
-            <div className="space-y-1.5 border-t border-blue-100 pt-3 text-xs text-slate-600">
+            <div className="space-y-2 border-t border-amber-100 pt-3.5 text-xs text-stone-600">
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1 text-slate-500">
-                  <Shirt className="h-3.5 w-3.5 text-blue-500" />
+                <span className="flex items-center gap-1.5 text-stone-500">
+                  <Shirt className="h-3.5 w-3.5 text-amber-600" />
                   Jersey Theme:
                 </span>
-                <span className="font-semibold text-blue-800">{config.teams.groom.colorName}</span>
+                <span className="font-semibold text-amber-900">{config.teams.groom.colorName}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1 text-slate-500">
-                  <Users className="h-3.5 w-3.5 text-blue-500" />
-                  Joined Players:
+                <span className="flex items-center gap-1.5 text-stone-500">
+                  <Users className="h-3.5 w-3.5 text-amber-600" />
+                  Confirmed Players:
                 </span>
-                <span className="font-bold text-blue-600 text-sm">{groomCount} Confirmed</span>
+                <span className="font-bold text-amber-700 text-sm">{groomCount} Joined</span>
               </div>
             </div>
 
-            <button className="mt-4 w-full rounded-xl bg-blue-600 py-2.5 text-center text-xs font-bold text-white shadow-sm transition-colors group-hover:bg-blue-700">
-              Join Team Groom →
+            <button className="mt-5 w-full rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 py-3 text-center text-xs font-bold text-stone-950 shadow-md shadow-amber-600/20 transition-all group-hover:from-amber-600 group-hover:to-yellow-700">
+              Join Team Sanjay (Gold) →
             </button>
           </motion.div>
         </div>

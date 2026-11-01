@@ -6,7 +6,7 @@ import SizeChartModal from './SizeChartModal';
 import {
   User,
   Crown,
-  Zap,
+  Sparkles,
   Calendar,
   Shirt,
   Ruler,
@@ -15,7 +15,7 @@ import {
   Loader2,
   ArrowRight,
   ArrowLeft,
-  Sparkles,
+  Heart,
 } from 'lucide-react';
 
 export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [] }) {
@@ -77,7 +77,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
     }
     if (step === 2) {
       if (!team) {
-        setErrorMsg('Please choose your squad (Team Bride or Team Groom).');
+        setErrorMsg('Please choose your squad (Team Amrutha or Team Sanjay).');
         return false;
       }
     }
@@ -150,25 +150,25 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
   };
 
   return (
-    <section id="rsvp" className="py-12 sm:py-16 px-4 sm:px-6 bg-festive-warmgray relative">
+    <section id="rsvp" className="py-14 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-[#fffaf5] via-[#fff5f6] to-[#fffaf5] relative">
       <div className="mx-auto max-w-lg">
         {/* Section Header */}
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 px-3 py-1 text-xs font-bold uppercase tracking-wider mb-2">
-            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-rose-100 text-rose-900 border border-rose-300 px-3.5 py-1 text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
+            <Heart className="h-3.5 w-3.5 text-rose-600 fill-rose-600" />
             <span>Join the Match Sheet</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-serif">
             Reserve Your Spot & Jersey
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            Takes less than 30 seconds! We need your squad choice and jersey size for custom printing.
+          <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-md mx-auto">
+            Takes less than 30 seconds! Pick your squad and jersey size for custom printing.
           </p>
         </div>
 
         {/* Existing RSVP Notice */}
         {isExistingEdit && (
-          <div className="mb-4 flex items-center gap-2 rounded-xl bg-amber-50 p-3 text-xs text-amber-800 border border-amber-300 animate-in fade-in">
+          <div className="mb-4 flex items-center gap-2 rounded-2xl bg-amber-50 p-3.5 text-xs text-amber-900 border border-amber-300 animate-in fade-in shadow-sm">
             <AlertCircle className="h-4 w-4 text-amber-600 shrink-0" />
             <span>
               Found an existing RSVP for <strong>{name}</strong>! Resubmitting will update your choices without creating a duplicate.
@@ -176,13 +176,13 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
           </div>
         )}
 
-        {/* Wizard Card */}
-        <div className="overflow-hidden rounded-3xl bg-white shadow-xl border border-slate-200">
+        {/* Wizard Card with Rose & Gold Wedding Border */}
+        <div className="overflow-hidden rounded-3xl bg-white shadow-xl shadow-rose-900/5 border border-rose-200/80">
           {/* Progress Bar & Header */}
-          <div className="border-b border-slate-100 bg-slate-50/70 p-4 sm:p-5">
-            <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-2">
+          <div className="border-b border-rose-100 bg-[#fffdfa] p-4 sm:p-5">
+            <div className="flex items-center justify-between text-xs font-semibold text-stone-500 mb-2">
               <span>Step {currentStep} of {totalSteps}</span>
-              <span className="text-turf-700 font-bold">
+              <span className="text-rose-700 font-serif font-bold">
                 {currentStep === 1 && 'Player Info'}
                 {currentStep === 2 && 'Select Squad'}
                 {currentStep === 3 && 'Choose Date'}
@@ -191,10 +191,10 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
               </span>
             </div>
 
-            {/* Stepper bar */}
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 flex">
+            {/* Stepper bar: Rose & Gold */}
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-stone-100 flex">
               <motion.div
-                className="h-full bg-gradient-to-r from-turf-500 to-emerald-600 transition-all duration-300"
+                className="h-full bg-gradient-to-r from-rose-500 via-rose-600 to-amber-500 transition-all duration-300"
                 style={{ width: `${(currentStep / totalSteps) * 100}%` }}
               />
             </div>
@@ -214,14 +214,14 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                   className="space-y-4"
                 >
                   <div>
-                    <label htmlFor="fullname" className="block text-sm font-bold text-slate-800 mb-1">
+                    <label htmlFor="fullname" className="block text-sm font-bold text-stone-800 mb-1 font-serif">
                       1. What is your full name? <span className="text-rose-500">*</span>
                     </label>
-                    <p className="text-xs text-slate-400 mb-3">
+                    <p className="text-xs text-stone-500 mb-3">
                       This will be printed on the match roster and jersey handover list.
                     </p>
                     <div className="relative">
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-rose-400">
                         <User className="h-5 w-5" />
                       </div>
                       <input
@@ -238,8 +238,8 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                             handleNext();
                           }
                         }}
-                        placeholder="e.g. Siddharth Rao"
-                        className="w-full rounded-2xl border border-slate-300 bg-slate-50 py-3.5 pl-11 pr-4 text-sm font-medium text-slate-900 placeholder-slate-400 focus:border-turf-600 focus:bg-white focus:outline-none focus:ring-4 focus:ring-turf-500/15"
+                        placeholder="e.g. Divya Nair"
+                        className="w-full rounded-2xl border border-rose-200 bg-[#fffaf5] py-3.5 pl-11 pr-4 text-sm font-medium text-stone-900 placeholder-stone-400 focus:border-rose-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-rose-500/15"
                         autoFocus
                       />
                     </div>
@@ -247,7 +247,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                 </motion.div>
               )}
 
-              {/* STEP 2: Team Selection */}
+              {/* STEP 2: Team Selection (Rose vs Gold) */}
               {currentStep === 2 && (
                 <motion.div
                   key="step2"
@@ -258,26 +258,26 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                   className="space-y-4"
                 >
                   <div>
-                    <label className="block text-sm font-bold text-slate-800 mb-1">
+                    <label className="block text-sm font-bold text-stone-800 mb-1 font-serif">
                       2. Choose your squad <span className="text-rose-500">*</span>
                     </label>
-                    <p className="text-xs text-slate-400 mb-3">
-                      Tap the team card you'd like to back on the pitch!
+                    <p className="text-xs text-stone-500 mb-3">
+                      Tap the squad card you'd like to back on the pitch!
                     </p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {/* Team Bride Option */}
+                      {/* Team Amrutha (Rose Gold) */}
                       <div
                         onClick={() => setTeam('bride')}
                         className={`relative cursor-pointer rounded-2xl p-4 border-2 transition-all flex flex-col justify-between ${
                           team === 'bride'
-                            ? 'border-rose-500 bg-rose-50/70 shadow-md ring-2 ring-rose-400/20'
-                            : 'border-slate-200 bg-white hover:border-slate-300'
+                            ? 'border-rose-500 bg-rose-50/80 shadow-md ring-2 ring-rose-400/20'
+                            : 'border-stone-200 bg-white hover:border-rose-300'
                         }`}
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-rose-500 to-pink-600 text-white shadow-sm">
-                            <Crown className="h-5 w-5" />
+                          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-rose-500 via-pink-600 to-rose-700 text-white shadow-sm">
+                            <Crown className="h-5 w-5 text-amber-200" />
                           </div>
                           {team === 'bride' && (
                             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-rose-600 text-white">
@@ -285,7 +285,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                             </span>
                           )}
                         </div>
-                        <h4 className="text-base font-extrabold text-rose-950">
+                        <h4 className="text-base font-extrabold text-rose-950 font-serif">
                           {config.teams.bride.name}
                         </h4>
                         <p className="text-xs text-rose-700 mt-0.5">
@@ -296,32 +296,32 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                         </span>
                       </div>
 
-                      {/* Team Groom Option */}
+                      {/* Team Sanjay (Champagne Gold) */}
                       <div
                         onClick={() => setTeam('groom')}
                         className={`relative cursor-pointer rounded-2xl p-4 border-2 transition-all flex flex-col justify-between ${
                           team === 'groom'
-                            ? 'border-blue-500 bg-blue-50/70 shadow-md ring-2 ring-blue-400/20'
-                            : 'border-slate-200 bg-white hover:border-slate-300'
+                            ? 'border-amber-500 bg-amber-50/80 shadow-md ring-2 ring-amber-400/20'
+                            : 'border-stone-200 bg-white hover:border-amber-300'
                         }`}
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-700 text-white shadow-sm">
-                            <Zap className="h-5 w-5" />
+                          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-amber-500 via-yellow-600 to-amber-700 text-white shadow-sm">
+                            <Sparkles className="h-5 w-5 text-amber-100" />
                           </div>
                           {team === 'groom' && (
-                            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-white">
+                            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-600 text-white">
                               <Check className="h-3.5 w-3.5" />
                             </span>
                           )}
                         </div>
-                        <h4 className="text-base font-extrabold text-blue-950">
+                        <h4 className="text-base font-extrabold text-amber-950 font-serif">
                           {config.teams.groom.name}
                         </h4>
-                        <p className="text-xs text-blue-700 mt-0.5">
+                        <p className="text-xs text-amber-700 mt-0.5">
                           {config.teams.groom.subtitle}
                         </p>
-                        <span className="mt-2 text-[10px] font-semibold text-blue-600 uppercase tracking-wider">
+                        <span className="mt-2 text-[10px] font-semibold text-amber-700 uppercase tracking-wider">
                           Jersey: {config.teams.groom.colorName}
                         </span>
                       </div>
@@ -341,11 +341,11 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                   className="space-y-4"
                 >
                   <div>
-                    <label className="block text-sm font-bold text-slate-800 mb-1">
+                    <label className="block text-sm font-bold text-stone-800 mb-1 font-serif">
                       3. Which date will you be attending? <span className="text-rose-500">*</span>
                     </label>
-                    <p className="text-xs text-slate-400 mb-3">
-                      We're hosting two turf sessions — please pick your preferred evening:
+                    <p className="text-xs text-stone-500 mb-3">
+                      We're hosting two sessions — please pick your preferred evening:
                     </p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -357,25 +357,25 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                             onClick={() => setPreferredDate(dateObj.id)}
                             className={`cursor-pointer rounded-2xl p-4 border-2 transition-all flex flex-col justify-between ${
                               isSelected
-                                ? 'border-turf-600 bg-turf-50/80 shadow-md ring-2 ring-turf-500/20'
-                                : 'border-slate-200 bg-white hover:border-slate-300'
+                                ? 'border-amber-500 bg-amber-50/80 shadow-md ring-2 ring-amber-400/20'
+                                : 'border-stone-200 bg-white hover:border-amber-300'
                             }`}
                           >
                             <div className="flex items-center justify-between mb-2">
-                              <span className="flex items-center gap-1.5 text-xs font-bold text-turf-800">
-                                <Calendar className="h-4 w-4 text-turf-600" />
+                              <span className="flex items-center gap-1.5 text-xs font-bold text-amber-900">
+                                <Calendar className="h-4 w-4 text-amber-600" />
                                 {dateObj.dayName}
                               </span>
                               {isSelected && (
-                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-turf-600 text-white">
+                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white">
                                   <Check className="h-3 w-3" />
                                 </span>
                               )}
                             </div>
-                            <h4 className="text-lg font-black text-slate-900">
+                            <h4 className="text-lg font-black text-stone-900 font-serif">
                               {dateObj.shortDate}
                             </h4>
-                            <span className="text-xs font-medium text-slate-500 mt-1">
+                            <span className="text-xs font-medium text-stone-500 mt-1">
                               {dateObj.time}
                             </span>
                           </div>
@@ -397,10 +397,10 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                   className="space-y-4"
                 >
                   <div>
-                    <label className="block text-sm font-bold text-slate-800 mb-1">
+                    <label className="block text-sm font-bold text-stone-800 mb-1 font-serif">
                       4. Custom jersey available. Do you need one? <span className="text-rose-500">*</span>
                     </label>
-                    <p className="text-xs text-slate-400 mb-3">
+                    <p className="text-xs text-stone-500 mb-3">
                       We are printing team jerseys with your squad colors for everyone playing!
                     </p>
 
@@ -410,15 +410,15 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                         onClick={() => setNeedsJersey(true)}
                         className={`flex flex-col items-center justify-center rounded-2xl p-5 border-2 transition-all ${
                           needsJersey
-                            ? 'border-emerald-600 bg-emerald-50 text-emerald-900 shadow-md ring-2 ring-emerald-500/20 font-bold'
-                            : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                            ? 'border-rose-600 bg-rose-50 text-rose-900 shadow-md ring-2 ring-rose-400/20 font-bold'
+                            : 'border-stone-200 bg-white text-stone-600 hover:border-stone-300'
                         }`}
                       >
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 mb-2">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 text-rose-700 mb-2">
                           <Shirt className="h-6 w-6" />
                         </div>
-                        <span className="text-base font-extrabold">Yes, please!</span>
-                        <span className="text-[11px] text-emerald-700 mt-1">I want a team jersey</span>
+                        <span className="text-base font-extrabold font-serif">Yes, please!</span>
+                        <span className="text-[11px] text-rose-700 mt-1">I want a squad jersey</span>
                       </button>
 
                       <button
@@ -426,15 +426,15 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                         onClick={() => setNeedsJersey(false)}
                         className={`flex flex-col items-center justify-center rounded-2xl p-5 border-2 transition-all ${
                           !needsJersey
-                            ? 'border-slate-700 bg-slate-100 text-slate-900 shadow-md font-bold'
-                            : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                            ? 'border-amber-600 bg-amber-50 text-amber-950 shadow-md ring-2 ring-amber-400/20 font-bold'
+                            : 'border-stone-200 bg-white text-stone-600 hover:border-stone-300'
                         }`}
                       >
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-200 text-slate-600 mb-2">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-700 mb-2">
                           <Check className="h-6 w-6" />
                         </div>
-                        <span className="text-base font-extrabold">No, thanks</span>
-                        <span className="text-[11px] text-slate-500 mt-1">I'll wear my own outfit</span>
+                        <span className="text-base font-extrabold font-serif">No, thanks</span>
+                        <span className="text-[11px] text-stone-500 mt-1">I'll wear my own outfit</span>
                       </button>
                     </div>
                   </div>
@@ -453,23 +453,23 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                 >
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-sm font-bold text-slate-800">
+                      <label className="text-sm font-bold text-stone-800 font-serif">
                         5. Select your jersey size <span className="text-rose-500">*</span>
                       </label>
                       <button
                         type="button"
                         onClick={() => setIsSizeChartOpen(true)}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-turf-700 hover:text-turf-900 underline underline-offset-2"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-rose-700 hover:text-rose-900 underline underline-offset-2"
                       >
                         <Ruler className="h-3.5 w-3.5" />
                         <span>View size chart</span>
                       </button>
                     </div>
-                    <p className="text-xs text-slate-400 mb-3">
+                    <p className="text-xs text-stone-500 mb-3">
                       Standard unisex athletic sizing (XS to 3XL):
                     </p>
 
-                    {/* Size Selector Grid */}
+                    {/* Size Selector Grid: Rose & Gold */}
                     <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                       {config.jerseySizeChart.map((item) => {
                         const isSelected = jerseySize === item.size;
@@ -480,12 +480,12 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                             onClick={() => setJerseySize(item.size)}
                             className={`flex flex-col items-center justify-center rounded-xl py-3 border-2 transition-all ${
                               isSelected
-                                ? 'border-turf-600 bg-turf-600 text-white font-extrabold shadow-md scale-105'
-                                : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 font-semibold'
+                                ? 'border-rose-600 bg-gradient-to-r from-rose-600 to-amber-600 text-white font-extrabold shadow-md scale-105'
+                                : 'border-stone-200 bg-stone-50 text-stone-700 hover:border-rose-300 font-semibold'
                             }`}
                           >
                             <span className="text-sm sm:text-base">{item.size}</span>
-                            <span className={`text-[10px] mt-0.5 ${isSelected ? 'text-emerald-100' : 'text-slate-400'}`}>
+                            <span className={`text-[10px] mt-0.5 ${isSelected ? 'text-amber-100' : 'text-stone-400'}`}>
                               {item.chest}cm
                             </span>
                           </button>
@@ -499,7 +499,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
 
             {/* Error Message */}
             {errorMsg && (
-              <div className="mt-4 flex items-center gap-2 rounded-xl bg-rose-50 p-3 text-xs text-rose-700 border border-rose-200">
+              <div className="mt-4 flex items-center gap-2 rounded-2xl bg-rose-50 p-3 text-xs text-rose-700 border border-rose-200">
                 <AlertCircle className="h-4 w-4 shrink-0" />
                 <span>{errorMsg}</span>
               </div>
@@ -512,7 +512,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                   type="button"
                   onClick={handlePrev}
                   disabled={isSubmitting}
-                  className="flex items-center justify-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-3 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50 transition-colors"
+                  className="flex items-center justify-center gap-1.5 rounded-2xl border border-stone-300 bg-white px-4 py-3 text-xs sm:text-sm font-semibold text-stone-700 hover:bg-stone-50 disabled:opacity-50 transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   <span>Back</span>
@@ -523,7 +523,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-turf-600 to-emerald-700 py-3 px-5 text-xs sm:text-sm font-bold text-white shadow-md shadow-turf-800/20 hover:from-turf-700 hover:to-emerald-800 active:scale-98 transition-all"
+                  className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-600 py-3.5 px-5 text-xs sm:text-sm font-bold text-white shadow-lg shadow-rose-950/20 hover:from-rose-700 hover:to-amber-700 active:scale-98 transition-all"
                 >
                   <span>Continue</span>
                   <ArrowRight className="h-4 w-4" />
@@ -533,7 +533,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                   type="button"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-turf-600 to-emerald-700 py-3.5 px-6 text-sm font-extrabold text-white shadow-lg shadow-emerald-900/30 hover:from-emerald-700 hover:to-emerald-800 active:scale-98 disabled:opacity-75 transition-all"
+                  className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-amber-600 py-3.5 px-6 text-sm font-extrabold text-white shadow-xl shadow-rose-950/25 hover:from-rose-700 hover:to-amber-700 active:scale-98 disabled:opacity-75 transition-all"
                 >
                   {isSubmitting ? (
                     <>
@@ -543,7 +543,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                   ) : (
                     <>
                       <span>{isExistingEdit ? 'Update My RSVP' : 'Confirm RSVP & Jersey'}</span>
-                      <Sparkles className="h-4 w-4 text-amber-300" />
+                      <Sparkles className="h-4 w-4 text-amber-200" />
                     </>
                   )}
                 </button>
