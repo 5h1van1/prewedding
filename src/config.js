@@ -38,30 +38,21 @@ export const config = {
     ringPhoto: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=80",
   },
 
-  // Event Dates & Timings (Guests can pick one preferred date)
+  // Event Date & Timings
   dates: [
     {
-      id: "2026-01-28",
+      id: "2027-01-28",
       shortDate: "Jan 28",
-      fullDate: "Wednesday, Jan 28, 2026",
-      dayName: "Wednesday",
-      time: "5:00 PM – 8:00 PM",
-      label: "Jan 28 (Wed)",
-      isoTimestamp: "2026-01-28T17:00:00",
-    },
-    {
-      id: "2026-01-29",
-      shortDate: "Jan 29",
-      fullDate: "Thursday, Jan 29, 2026",
+      fullDate: "Thursday, Jan 28, 2027",
       dayName: "Thursday",
       time: "5:00 PM – 8:00 PM",
-      label: "Jan 29 (Thu)",
-      isoTimestamp: "2026-01-29T17:00:00",
+      label: "Jan 28, 2027 (Thu)",
+      isoTimestamp: "2027-01-28T17:00:00",
     },
   ],
 
-  // Countdown target date (First event date)
-  countdownTarget: "2026-01-28T17:00:00",
+  // Countdown target date (Jan 28, 2027 at 5:00 PM)
+  countdownTarget: "2027-01-28T17:00:00",
 
   // Venue Details
   venue: {
@@ -207,16 +198,10 @@ export const config = {
   // Organizers Contact Info (Footer)
   contacts: [
     {
-      role: "Bride's Side Coordinator",
-      name: "Divya (Bride's Sister)",
-      phone: "+91 98765 43210",
-      whatsapp: "919876543210",
-    },
-    {
-      role: "Groom's Side Coordinator",
-      name: "Rahul (Groom's Brother)",
-      phone: "+91 91234 56789",
-      whatsapp: "919123456789",
+      role: "Groom's Brother & Coordinator",
+      name: "Sager Prasad",
+      phone: "+91 88484 85363",
+      whatsapp: "918848485363",
     },
   ],
 

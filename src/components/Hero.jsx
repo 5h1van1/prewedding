@@ -68,7 +68,7 @@ export default function Hero() {
         >
           <span>The Pre-Wedding Soirée & Match</span>
           <span className="text-[11px] font-bold text-amber-300 border border-amber-400/50 bg-stone-900/80 rounded-full px-2.5 py-0.5">
-            ✨ JAN 2026
+            ✨ JAN 2027
           </span>
         </motion.h2>
 
@@ -91,7 +91,7 @@ export default function Hero() {
         >
           <div className="flex items-center gap-1.5 rounded-full bg-stone-900/80 border border-amber-400/30 px-3.5 py-1.5 backdrop-blur-md shadow-md">
             <Calendar className="h-3.5 w-3.5 text-amber-400" />
-            <span className="font-semibold text-white">Jan 28 or Jan 29</span>
+            <span className="font-semibold text-white">Jan 28, 2027 (Thursday)</span>
             <span className="text-amber-400/60">|</span>
             <span>5:00 PM – 8:00 PM</span>
           </div>

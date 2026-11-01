@@ -60,7 +60,7 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
   const [modalForm, setModalForm] = useState({
     name: '',
     team: 'bride',
-    preferredDate: config.dates[0]?.id || '2026-01-28',
+    preferredDate: config.dates[0]?.id || '2027-01-28',
     needsJersey: true,
     jerseySize: 'M',
   });
@@ -70,7 +70,7 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
     setModalForm({
       name: '',
       team: 'bride',
-      preferredDate: config.dates[0]?.id || '2026-01-28',
+      preferredDate: config.dates[0]?.id || '2027-01-28',
       needsJersey: true,
       jerseySize: 'M',
     });
@@ -335,21 +335,21 @@ export default function AdminView({ rsvps = [], onBackToHome }) {
             </span>
           </div>
 
-          {/* Card 3: Date Breakdown */}
+          {/* Card 3: Event Date */}
           <div className="rounded-2xl bg-white p-4 shadow-sm border border-slate-200 flex flex-col justify-between">
             <div className="flex items-center justify-between text-slate-500 mb-1">
-              <span className="text-xs font-bold uppercase tracking-wider">Per Date</span>
+              <span className="text-xs font-bold uppercase tracking-wider">Event Date</span>
               <Calendar className="h-4 w-4 text-amber-500" />
             </div>
             <div className="space-y-0.5">
-              {config.dates.map((d) => (
-                <div key={d.id} className="flex justify-between items-center text-xs">
-                  <span className="font-semibold text-slate-700">{d.shortDate}:</span>
-                  <span className="font-mono font-bold text-slate-900">{dateCounts[d.id] || 0}</span>
-                </div>
-              ))}
+              <div className="text-base font-extrabold text-slate-900 font-serif">
+                Jan 28, 2027
+              </div>
+              <div className="text-xs text-slate-500 font-medium">Thursday (5:00 PM – 8:00 PM)</div>
             </div>
-            <span className="text-[10px] text-slate-400 mt-1">5:00 PM to 8:00 PM</span>
+            <span className="text-[11px] font-bold text-rose-700 mt-1">
+              {totalGuests} Confirmed Guest{totalGuests === 1 ? '' : 's'}
+            </span>
           </div>
 
           {/* Card 4: Jerseys Total */}

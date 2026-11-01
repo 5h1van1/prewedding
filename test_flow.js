@@ -16,7 +16,7 @@ async function testRsvpFlow() {
   const res1 = await saveRsvp({
     name: 'Tanmay Bhat',
     team: 'groom',
-    preferredDate: '2026-01-28',
+    preferredDate: '2027-01-28',
     needsJersey: true,
     jerseySize: 'XL',
   });
@@ -34,7 +34,7 @@ async function testRsvpFlow() {
   const res2 = await saveRsvp({
     name: 'Tanmay Bhat',
     team: 'bride',
-    preferredDate: '2026-01-29',
+    preferredDate: '2027-01-28',
     needsJersey: true,
     jerseySize: 'L',
   });

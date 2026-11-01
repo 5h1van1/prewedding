@@ -37,9 +37,9 @@ export default function Footer({ onNavigateToAdmin }) {
         {/* Organizers Contact Numbers */}
         <div className="mb-10 rounded-3xl bg-stone-900/90 border border-stone-800 p-6 max-w-lg mx-auto shadow-xl">
           <h4 className="text-xs font-bold uppercase tracking-wider text-rose-300 font-serif mb-3.5">
-            Questions? Contact The Family Coordinators
+            {config.contacts.length === 1 ? 'Questions? Contact The Coordinator' : 'Questions? Contact The Family Coordinators'}
           </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-left">
+          <div className={`grid ${config.contacts.length === 1 ? 'grid-cols-1 max-w-sm mx-auto' : 'grid-cols-1 sm:grid-cols-2'} gap-3.5 text-left`}>
             {config.contacts.map((contact, i) => (
               <div
                 key={i}

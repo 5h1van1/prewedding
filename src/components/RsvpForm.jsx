@@ -22,7 +22,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
   // Form State
   const [name, setName] = useState('');
   const [team, setTeam] = useState(initialTeam || 'bride');
-  const [preferredDate, setPreferredDate] = useState(config.dates[0]?.id || '2026-01-28');
+  const [preferredDate, setPreferredDate] = useState(config.dates[0]?.id || '2027-01-28');
   const [needsJersey, setNeedsJersey] = useState(true);
   const [jerseySize, setJerseySize] = useState('M');
 
@@ -60,8 +60,8 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
     }
   }, [name, existingRsvps]);
 
-  // Determine total steps: 5 if jersey needed, 4 if not needed
-  const totalSteps = needsJersey ? 5 : 4;
+  // Determine total steps: 4 if jersey needed, 3 if not needed
+  const totalSteps = needsJersey ? 4 : 3;
 
   const validateStep = (step) => {
     setErrorMsg('');
@@ -81,13 +81,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
         return false;
       }
     }
-    if (step === 3) {
-      if (!preferredDate) {
-        setErrorMsg('Please select your preferred event date.');
-        return false;
-      }
-    }
-    if (step === 5 && needsJersey) {
+    if (step === 4 && needsJersey) {
       if (!jerseySize) {
         setErrorMsg('Please pick a jersey size.');
         return false;
@@ -98,7 +92,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
-      if (currentStep === 4 && !needsJersey) {
+      if (currentStep === 3 && !needsJersey) {
         handleSubmit();
       } else {
         setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
@@ -162,7 +156,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
             Reserve Your Spot & Jersey
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-md mx-auto">
-            Takes less than 30 seconds! Pick your squad and jersey size for custom printing.
+            Thursday, Jan 28, 2027 • Pick your squad & jersey size for custom printing.
           </p>
         </div>
 
@@ -185,9 +179,8 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
               <span className="text-rose-700 font-serif font-bold">
                 {currentStep === 1 && 'Player Info'}
                 {currentStep === 2 && 'Select Squad'}
-                {currentStep === 3 && 'Choose Date'}
-                {currentStep === 4 && 'Jersey Option'}
-                {currentStep === 5 && 'Select Size'}
+                {currentStep === 3 && 'Jersey Option'}
+                {currentStep === 4 && 'Select Size'}
               </span>
             </div>
 
@@ -330,7 +323,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                 </motion.div>
               )}
 
-              {/* STEP 3: Preferred Date */}
+              {/* STEP 3: Jersey Requirement */}
               {currentStep === 3 && (
                 <motion.div
                   key="step3"
@@ -342,63 +335,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                 >
                   <div>
                     <label className="block text-sm font-bold text-stone-800 mb-1 font-serif">
-                      3. Which date will you be attending? <span className="text-rose-500">*</span>
-                    </label>
-                    <p className="text-xs text-stone-500 mb-3">
-                      We're hosting two sessions — please pick your preferred evening:
-                    </p>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {config.dates.map((dateObj) => {
-                        const isSelected = preferredDate === dateObj.id;
-                        return (
-                          <div
-                            key={dateObj.id}
-                            onClick={() => setPreferredDate(dateObj.id)}
-                            className={`cursor-pointer rounded-2xl p-4 border-2 transition-all flex flex-col justify-between ${
-                              isSelected
-                                ? 'border-amber-500 bg-amber-50/80 shadow-md ring-2 ring-amber-400/20'
-                                : 'border-stone-200 bg-white hover:border-amber-300'
-                            }`}
-                          >
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="flex items-center gap-1.5 text-xs font-bold text-amber-900">
-                                <Calendar className="h-4 w-4 text-amber-600" />
-                                {dateObj.dayName}
-                              </span>
-                              {isSelected && (
-                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white">
-                                  <Check className="h-3 w-3" />
-                                </span>
-                              )}
-                            </div>
-                            <h4 className="text-lg font-black text-stone-900 font-serif">
-                              {dateObj.shortDate}
-                            </h4>
-                            <span className="text-xs font-medium text-stone-500 mt-1">
-                              {dateObj.time}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* STEP 4: Jersey Requirement */}
-              {currentStep === 4 && (
-                <motion.div
-                  key="step4"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.2 }}
-                  className="space-y-4"
-                >
-                  <div>
-                    <label className="block text-sm font-bold text-stone-800 mb-1 font-serif">
-                      4. Custom jersey available. Do you need one? <span className="text-rose-500">*</span>
+                      3. Custom jersey available. Do you need one? <span className="text-rose-500">*</span>
                     </label>
                     <p className="text-xs text-stone-500 mb-3">
                       We are printing team jerseys with your squad colors for everyone playing!
@@ -441,10 +378,10 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                 </motion.div>
               )}
 
-              {/* STEP 5: Jersey Size (Only shown if needsJersey is true) */}
-              {currentStep === 5 && needsJersey && (
+              {/* STEP 4: Jersey Size (Only shown if needsJersey is true) */}
+              {currentStep === 4 && needsJersey && (
                 <motion.div
-                  key="step5"
+                  key="step4"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
@@ -454,7 +391,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <label className="text-sm font-bold text-stone-800 font-serif">
-                        5. Select your jersey size <span className="text-rose-500">*</span>
+                        4. Select your jersey size <span className="text-rose-500">*</span>
                       </label>
                       <button
                         type="button"
