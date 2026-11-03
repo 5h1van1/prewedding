@@ -31,7 +31,6 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
   const [isSizeChartOpen, setIsSizeChartOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const [isExistingEdit, setIsExistingEdit] = useState(false);
 
   // Sync initialTeam prop if clicked from FaceOffBanner
   useEffect(() => {
@@ -39,37 +38,6 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
       setTeam(initialTeam);
     }
   }, [initialTeam]);
-
-  // Check if guest previously submitted on this device or matches existing RSVP
-  useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem('wedding_my_rsvp') || 'null');
-      if (saved && saved.name && name.trim().length >= 2 && saved.name.toLowerCase() === name.trim().toLowerCase()) {
-        setIsExistingEdit(true);
-        if (saved.team) setTeam(saved.team);
-        if (saved.preferredDate) setPreferredDate(saved.preferredDate);
-        if (typeof saved.needsJersey === 'boolean') setNeedsJersey(saved.needsJersey);
-        if (saved.jerseySize && saved.jerseySize !== 'None') setJerseySize(saved.jerseySize);
-        return;
-      }
-    } catch (e) {}
-
-    if (name.trim().length >= 3 && existingRsvps.length > 0) {
-      const matched = existingRsvps.find(
-        (r) => (r.name || '').toLowerCase() === name.trim().toLowerCase()
-      );
-      if (matched) {
-        setIsExistingEdit(true);
-        if (matched.team) setTeam(matched.team);
-        if (matched.preferredDate) setPreferredDate(matched.preferredDate);
-        if (typeof matched.needsJersey === 'boolean') setNeedsJersey(matched.needsJersey);
-        if (matched.jerseySize && matched.jerseySize !== 'None') setJerseySize(matched.jerseySize);
-        return;
-      }
-    }
-
-    setIsExistingEdit(false);
-  }, [name, existingRsvps]);
 
   // Determine total steps: 4 if jersey needed, 3 if not needed
   const totalSteps = needsJersey ? 4 : 3;
@@ -129,17 +97,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
     setErrorMsg('');
 
     try {
-      // Check if updating guest's own previous submission on this device
-      let existingId = undefined;
-      try {
-        const saved = JSON.parse(localStorage.getItem('wedding_my_rsvp') || 'null');
-        if (saved && saved.id && (saved.name || '').toLowerCase() === name.trim().toLowerCase()) {
-          existingId = saved.id;
-        }
-      } catch (e) {}
-
       const payload = {
-        id: existingId,
         name: name.trim(),
         team,
         preferredDate,
@@ -150,10 +108,6 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
       const result = await saveRsvp(payload);
 
       if (result.success) {
-        try {
-          localStorage.setItem('wedding_my_rsvp', JSON.stringify({ ...payload, id: result.docId }));
-        } catch (e) {}
-
         if (onRsvpSuccess) {
           onRsvpSuccess({ ...payload, docId: result.docId, isCloud: result.isCloud });
         }
@@ -184,16 +138,6 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
             Thursday, Jan 28, 2027 • Pick your squad & jersey size for custom printing.
           </p>
         </div>
-
-        {/* Existing RSVP Notice */}
-        {isExistingEdit && (
-          <div className="mb-4 flex items-center gap-2 rounded-2xl bg-amber-50 p-3.5 text-xs text-amber-900 border border-amber-300 animate-in fade-in shadow-sm">
-            <AlertCircle className="h-4 w-4 text-amber-600 shrink-0" />
-            <span>
-              Found an existing RSVP for <strong>{name}</strong>! Resubmitting will update your choices without creating a duplicate.
-            </span>
-          </div>
-        )}
 
         {/* Wizard Card with Rose & Gold Wedding Border */}
         <div className="overflow-hidden rounded-3xl bg-white shadow-xl shadow-rose-900/5 border border-rose-200/80">
@@ -504,7 +448,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                     </>
                   ) : (
                     <>
-                      <span>{isExistingEdit ? 'Update My RSVP' : 'Confirm RSVP & Jersey'}</span>
+                      <span>Confirm RSVP & Jersey</span>
                       <Sparkles className="h-4 w-4 text-amber-200" />
                     </>
                   )}

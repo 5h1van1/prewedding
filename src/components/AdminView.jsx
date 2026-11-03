@@ -41,9 +41,15 @@ import {
   Sparkles,
 } from 'lucide-react';
 
+// Authorized Organizer UID (configured in Firebase Authentication)
+const AUTHORIZED_ORGANIZER_UID = 'olKUnKRE0pRydLvQIJNuRcgdEag1';
+
 export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
   // Authentication State
-  const [currentUser, setCurrentUser] = useState(() => getCurrentUser());
+  const [currentUser, setCurrentUser] = useState(() => {
+    const user = getCurrentUser();
+    return user && user.uid === AUTHORIZED_ORGANIZER_UID ? user : null;
+  });
   const [authChecking, setAuthChecking] = useState(isFirebaseReady);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -62,11 +68,21 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
     }
 
     const unsubAuth = subscribeToAuth((user) => {
-      setCurrentUser(user);
-      setAuthChecking(false);
-      if (!user) {
+      if (user) {
+        if (user.uid === AUTHORIZED_ORGANIZER_UID) {
+          setCurrentUser(user);
+          setLoginError('');
+        } else {
+          console.warn('Unauthorized account UID attempted admin access:', user.uid);
+          setCurrentUser(null);
+          setLoginError('Access denied: Signed-in account is not authorized as the wedding organizer.');
+          signOutAdmin();
+        }
+      } else {
+        setCurrentUser(null);
         setAdminRsvps([]);
       }
+      setAuthChecking(false);
     });
 
     return () => {
@@ -74,10 +90,10 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
     };
   }, []);
 
-  // Real-time subscription to Firestore RSVPs when authenticated
+  // Real-time subscription to Firestore RSVPs when authenticated as organizer
   useEffect(() => {
-    // In Firebase mode, only listen if authenticated
-    if (isFirebaseReady && !currentUser) {
+    // In Firebase mode, only listen if authenticated with authorized organizer UID
+    if (isFirebaseReady && (!currentUser || currentUser.uid !== AUTHORIZED_ORGANIZER_UID)) {
       setAdminRsvps([]);
       return;
     }
@@ -114,7 +130,12 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
       const result = await signInAdmin(email, password);
       if (!result.success) {
         setLoginError(result.error || 'Failed to authenticate.');
+      } else if (result.user.uid !== AUTHORIZED_ORGANIZER_UID) {
+        setLoginError('Access denied: This account is not authorized as the wedding organizer.');
+        await signOutAdmin();
+        setCurrentUser(null);
       } else {
+        setCurrentUser(result.user);
         setEmail('');
         setPassword('');
         setLoginError('');
@@ -315,7 +336,7 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
   }
 
   // FIREBASE EMAIL / PASSWORD LOGIN SCREEN
-  if (isFirebaseReady && !currentUser) {
+  if (isFirebaseReady && (!currentUser || currentUser.uid !== AUTHORIZED_ORGANIZER_UID)) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 selection:bg-amber-500 selection:text-slate-950">
         <div className="w-full max-w-md rounded-3xl bg-slate-900 border border-slate-800 p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden">

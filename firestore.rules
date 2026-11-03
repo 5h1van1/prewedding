@@ -3,36 +3,62 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Helper: Verify if user is an authenticated administrator
-    function isAdmin() {
-      return request.auth != null;
+    // Helper: Verify if the request is from the authorized organizer UID
+    function isOrganizer() {
+      return request.auth != null && request.auth.uid == 'olKUnKRE0pRydLvQIJNuRcgdEag1';
     }
 
-    // Helper: Validate guest RSVP fields and data types on creation
-    function isValidRsvp(data) {
-      return data.keys().hasAll(['name', 'team', 'preferredDate', 'needsJersey', 'jerseySize'])
-        // Name validation
-        && data.name is string 
-        && data.name.size() >= 2 
+    // Helper: Strict schema, data type, and timestamp validation for guest RSVP documents
+    function isValidGuestRsvp(data, docId) {
+      let allowedKeys = [
+        'id', 'name', 'team', 'preferredDate', 
+        'needsJersey', 'jerseySize', 'source', 
+        'createdAt', 'updatedAt'
+      ];
+
+      return data.keys().hasAll(allowedKeys)
+        && data.keys().hasOnly(allowedKeys)
+
+        // Document ID integrity: internal 'id' field must match the document path ID
+        && data.id is string
+        && data.id == docId
+
+        // Guest name validation
+        && data.name is string
+        && data.name.trim().size() >= 2
         && data.name.size() <= 100
-        // Squad selection
+
+        // Squad validation
         && data.team in ['bride', 'groom']
-        // Event date
-        && data.preferredDate is string 
-        && data.preferredDate.size() >= 5 
+
+        // Event date string validation
+        && data.preferredDate is string
+        && data.preferredDate.size() >= 5
         && data.preferredDate.size() <= 30
-        // Jersey preferences
+
+        // Jersey preferences and size consistency
         && data.needsJersey is bool
-        && data.jerseySize in ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', 'None'];
+        && (
+          (data.needsJersey == true && data.jerseySize in ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL'])
+          || (data.needsJersey == false && data.jerseySize == 'None')
+        )
+
+        // Metadata validation
+        && data.source == 'cloud'
+
+        // Strict Server Timestamp validation on creation: must equal request.time
+        && data.createdAt == request.time
+        && data.updatedAt == request.time;
     }
 
-    // RSVPs Collection: Guest submissions and Organizer management
+    // RSVPs Collection
     match /rsvps/{rsvpId} {
-      // Public guests can create a new RSVP document if valid
-      allow create: if isValidRsvp(request.resource.data);
+      // 1. Unauthenticated public guests can ONLY create new documents matching strict schema
+      allow create: if isOrganizer() || isValidGuestRsvp(request.resource.data, rsvpId);
 
-      // Only authenticated administrators can read all RSVPs, update, or delete
-      allow read, update, delete: if isAdmin();
+      // 2. Unauthenticated guests CANNOT read, update, or delete
+      // 3. ONLY the authorized organizer UID can read, update, or delete
+      allow read, update, delete: if isOrganizer();
     }
   }
 }
