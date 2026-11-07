@@ -135,7 +135,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
             Reserve Your Spot & Jersey
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-md mx-auto">
-            Thursday, Jan 28, 2027 • Pick your squad & jersey size for custom printing.
+            {config.dates[0]?.fullDate || 'Thursday, Jan 28, 2027'} • Pick your squad & jersey size for custom printing.
           </p>
         </div>
 

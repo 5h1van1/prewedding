@@ -10,6 +10,8 @@ export default function Hero() {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const primaryDate = config.dates[0];
+
   return (
     <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-6 pb-14 sm:pb-20">
       {/* Background Couple Photo with Warm Rose & Golden Lighting */}
@@ -44,15 +46,17 @@ export default function Hero() {
           <Heart className="h-3 w-3 text-rose-400 fill-rose-400" />
         </motion.div>
 
-        {/* Script Couple Names */}
+        {/* Couple Names with Prominent Capital 'A' */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           className="relative mb-2"
         >
-          <h1 className="font-script text-5xl sm:text-7xl md:text-8xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-rose-100 to-amber-200 drop-shadow-xl leading-tight sm:leading-none">
-            {config.couple.brideName} <span className="font-serif text-3xl sm:text-5xl font-light text-amber-300 mx-1">&</span> {config.couple.groomName}
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-rose-100 to-amber-200 drop-shadow-xl leading-tight sm:leading-none">
+            <span className="font-serif font-black">A</span><span className="font-script">mritha</span>{' '}
+            <span className="font-serif text-3xl sm:text-5xl font-light text-amber-300 mx-1">&</span>{' '}
+            <span className="font-serif font-black">S</span><span className="font-script">anjay</span>
           </h1>
           <p className="font-serif italic text-xs sm:text-sm tracking-wide text-amber-200/90 mt-2 font-light">
             {config.couple.brideNickname} <span className="text-rose-300 font-sans text-xs">♡</span> {config.couple.groomNickname}
@@ -68,7 +72,7 @@ export default function Hero() {
         >
           <span>The Pre-Wedding Soirée & Match</span>
           <span className="text-[11px] font-bold text-amber-300 border border-amber-400/50 bg-stone-900/80 rounded-full px-2.5 py-0.5">
-            ✨ JAN 2027
+            ✨ {primaryDate ? primaryDate.shortDate.toUpperCase() + ' 2027' : 'JAN 2027'}
           </span>
         </motion.h2>
 
@@ -91,9 +95,11 @@ export default function Hero() {
         >
           <div className="flex items-center gap-1.5 rounded-full bg-stone-900/80 border border-amber-400/30 px-3.5 py-1.5 backdrop-blur-md shadow-md">
             <Calendar className="h-3.5 w-3.5 text-amber-400" />
-            <span className="font-semibold text-white">Jan 28, 2027 (Thursday)</span>
+            <span className="font-semibold text-white">
+              {primaryDate ? primaryDate.fullDate : 'Thursday, Jan 28, 2027'}
+            </span>
             <span className="text-amber-400/60">|</span>
-            <span>5:00 PM – 8:00 PM</span>
+            <span>{primaryDate ? primaryDate.time : '5:00 PM – 8:00 PM'}</span>
           </div>
 
           <div className="flex items-center gap-1.5 rounded-full bg-stone-900/80 border border-rose-400/30 px-3.5 py-1.5 backdrop-blur-md shadow-md">

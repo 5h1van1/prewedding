@@ -47,12 +47,24 @@ export const config = {
       dayName: "Thursday",
       time: "5:00 PM – 8:00 PM",
       label: "Jan 28, 2027 (Thu)",
-      isoTimestamp: "2027-01-28T17:00:00",
+      isoTimestamp: "2027-01-28T17:00:00+05:30",
     },
   ],
 
-  // Countdown target date (Jan 28, 2027 at 5:00 PM)
-  countdownTarget: "2027-01-28T17:00:00",
+  // Countdown target date (Jan 28, 2027 at 5:00 PM IST)
+  countdownTarget: "2027-01-28T17:00:00+05:30",
+
+  // Official Guest WhatsApp Group for communication
+  whatsappGroupUrl: "https://chat.whatsapp.com/JBXorw9WFvi7xaq06S5tkJ?s=cl&p=a&iam=2",
+
+  // Bride & Groom Introduction Video
+  introVideo: {
+    title: "Introducing Amritha & Sanjay",
+    subtitle: "A glimpse into our story & moments together before the celebration match!",
+    googleDriveUrl: "https://drive.google.com/file/d/1ysO38QxdAXsJpIKa_J9XkUM6DWtPpf9N/view?usp=drive_link",
+    embedUrl: "https://drive.google.com/file/d/1ysO38QxdAXsJpIKa_J9XkUM6DWtPpf9N/preview",
+    localVideoUrl: "", // Optional local mp4 fallback if added to public/photos/
+  },
 
   // Venue Details
   venue: {

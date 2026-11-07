@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { config } from '../config';
-import { Phone, MessageCircle, Copy, Check, Heart, Shield } from 'lucide-react';
+import { Phone, MessageCircle, Copy, Check, Heart, Shield, ExternalLink } from 'lucide-react';
 
 export default function Footer({ onNavigateToAdmin }) {
   const [copied, setCopied] = useState(false);
@@ -33,6 +33,29 @@ export default function Footer({ onNavigateToAdmin }) {
             )}
           </button>
         </div>
+
+        {/* WhatsApp Group Communication Banner */}
+        {config.whatsappGroupUrl && (
+          <div className="mb-8 rounded-3xl bg-gradient-to-r from-emerald-950/70 via-stone-900 to-emerald-950/70 border border-emerald-500/40 p-5 max-w-lg mx-auto shadow-xl">
+            <div className="flex items-center justify-center gap-2 mb-2 text-emerald-300 font-serif font-bold text-sm">
+              <MessageCircle className="h-4 w-4 fill-emerald-300/20" />
+              <span>Guest WhatsApp Community</span>
+            </div>
+            <p className="text-xs text-stone-300 mb-3.5 leading-relaxed">
+              Stay in the loop with live match updates, fixture draws, custom jersey announcements, and celebrations!
+            </p>
+            <a
+              href={config.whatsappGroupUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 px-5 py-2.5 text-xs font-bold text-white shadow-md hover:from-emerald-700 hover:to-green-700 active:scale-98 transition-all"
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span>Join WhatsApp Group</span>
+              <ExternalLink className="h-3.5 w-3.5 opacity-80" />
+            </a>
+          </div>
+        )}
 
         {/* Organizers Contact Numbers */}
         <div className="mb-10 rounded-3xl bg-stone-900/90 border border-stone-800 p-6 max-w-lg mx-auto shadow-xl">
@@ -79,8 +102,8 @@ export default function Footer({ onNavigateToAdmin }) {
         {/* Warm Wedding Sign-off */}
         <div className="flex items-center justify-center gap-2 text-sm text-stone-400 mb-6 font-serif">
           <span>Made with love for</span>
-          <span className="font-bold text-white font-script text-2xl">
-            {config.couple.brideName} & {config.couple.groomName}
+          <span className="font-serif font-extrabold text-white text-base tracking-wide">
+            <span className="text-rose-400 font-black">A</span>mritha <span className="font-script text-xl text-amber-400 font-normal">&</span> <span className="text-amber-400 font-black">S</span>anjay
           </span>
           <Heart className="h-4 w-4 text-rose-500 fill-rose-500 animate-pulse" />
         </div>

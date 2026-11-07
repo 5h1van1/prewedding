@@ -21,7 +21,7 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
     <header className="sticky top-0 z-40 w-full transition-all duration-300">
       <div className="mx-auto max-w-5xl px-4 py-2.5 sm:px-6">
         <nav className="glass-panel flex items-center justify-between rounded-full px-4 py-2.5 shadow-md shadow-rose-950/5 border border-rose-200/60">
-          {/* Couple Monogram / Brand */}
+          {/* Couple Monogram / Brand Logo */}
           <a
             href="#"
             onClick={(e) => {
@@ -32,16 +32,26 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2.5 group"
+            title={`${config.couple.brideName} & ${config.couple.groomName}`}
           >
+            {/* Monogram Circular Badge with bold Capital A & S */}
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-rose-600 via-pink-600 to-amber-500 text-white shadow-sm transition-transform group-hover:scale-105">
-              <Heart className="h-4 w-4 text-white fill-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-script text-xl leading-none font-bold text-stone-900">
-                {config.couple.brideName} & {config.couple.groomName}
+              <span className="font-serif text-xs font-black tracking-tighter text-white flex items-center justify-center">
+                <span className="font-black text-[13px]">A</span>
+                <Heart className="h-2 w-2 text-rose-200 fill-rose-200 mx-0.5" />
+                <span className="font-black text-[13px]">S</span>
               </span>
-              <span className="text-[10px] tracking-wider font-serif uppercase text-rose-700 font-semibold">
+            </div>
+
+            {/* Couple Name in Logo with prominent Capital 'A' */}
+            <div className="flex flex-col">
+              <span className="font-serif text-lg leading-none font-bold text-stone-900 tracking-tight">
+                <span className="text-rose-700 font-serif font-black text-xl">A</span>mritha{' '}
+                <span className="font-script text-xl text-amber-600 font-normal mx-0.5">&</span>{' '}
+                <span className="text-amber-700 font-serif font-black text-xl">S</span>anjay
+              </span>
+              <span className="text-[10px] tracking-wider font-serif uppercase text-rose-700 font-semibold mt-0.5">
                 Celebration & Match 💍
               </span>
             </div>
@@ -65,7 +75,7 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
               onClick={() => scrollToSection('gallery')}
               className="hover:text-rose-700 transition-colors font-serif"
             >
-              Our Moments
+              Story & Video
             </button>
             <button
               onClick={() => scrollToSection('venue')}
@@ -138,7 +148,7 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
                 onClick={() => scrollToSection('gallery')}
                 className="text-left px-3 py-2 rounded-xl hover:bg-rose-50"
               >
-                Our Moments & Story
+                Story & Video Introduction
               </button>
               <button
                 onClick={() => scrollToSection('venue')}

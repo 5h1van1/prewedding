@@ -84,13 +84,17 @@ export default function VenueSection() {
               <span className="font-serif">{config.venue.shortLocation}</span>
             </div>
 
-            {/* Center Monogram / Wedding Emblem */}
+            {/* Center Monogram / Wedding Emblem with Capital A & S */}
             <div className="relative z-10 self-center text-center my-auto">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md border border-amber-200 text-rose-700 mb-2">
-                <Heart className="h-8 w-8 text-rose-500 fill-rose-100" />
+                <span className="font-serif text-lg font-black tracking-tighter text-rose-700 flex items-center justify-center">
+                  <span>A</span>
+                  <Heart className="h-4 w-4 text-rose-500 fill-rose-100 mx-0.5" />
+                  <span>S</span>
+                </span>
               </div>
-              <h4 className="font-script text-2xl font-bold text-stone-800">
-                {config.couple.brideName} & {config.couple.groomName}
+              <h4 className="font-serif text-xl sm:text-2xl font-extrabold text-stone-800">
+                <span className="text-rose-700 font-black">A</span>mritha <span className="font-script text-2xl font-normal text-amber-600">&</span> <span className="text-amber-700 font-black">S</span>anjay
               </h4>
               <p className="text-[11px] font-serif italic text-amber-800">
                 Match & Celebrations Arena

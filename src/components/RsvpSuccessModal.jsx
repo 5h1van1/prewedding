@@ -3,7 +3,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { config } from '../config';
 import { generateIcsCalendar, getGoogleCalendarUrl } from '../services/calendar';
-import { CheckCircle2, Calendar, Share2, Download, Edit3, X, MapPin, Shirt, Trophy, Heart } from 'lucide-react';
+import {
+  CheckCircle2,
+  Calendar,
+  Share2,
+  Download,
+  Edit3,
+  X,
+  MapPin,
+  Shirt,
+  Trophy,
+  MessageCircle,
+  ExternalLink,
+} from 'lucide-react';
 
 export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgain }) {
   useEffect(() => {
@@ -84,6 +96,10 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
     );
     window.open(`https://wa.me/?text=${text}`, '_blank');
   };
+
+  const whatsappGroupLink =
+    config.whatsappGroupUrl ||
+    'https://chat.whatsapp.com/JBXorw9WFvi7xaq06S5tkJ?s=cl&p=a&iam=2';
 
   return (
     <AnimatePresence>
@@ -193,15 +209,45 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
               </div>
             </div>
 
+            {/* Official WhatsApp Group Join Card (Primary for communication) */}
+            <div className="mt-5 rounded-2xl bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100/80 p-4 border-2 border-emerald-400 shadow-md">
+              <div className="flex items-center gap-2.5 text-emerald-950 font-bold text-sm font-serif">
+                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-600 text-white shrink-0 shadow-sm">
+                  <MessageCircle className="h-4 w-4" />
+                </div>
+                <div>
+                  <h5 className="leading-tight font-extrabold text-emerald-950">Join Our WhatsApp Group! 💬</h5>
+                  <span className="text-[10px] text-emerald-700 font-sans font-semibold uppercase tracking-wider">
+                    For further communication & updates
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-xs text-stone-700 mt-2 leading-relaxed">
+                Please join the official celebration WhatsApp group where match fixtures, jersey pickup details, photo drops, and further updates will be shared!
+              </p>
+
+              <a
+                href={whatsappGroupLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 py-3 px-4 text-xs sm:text-sm font-extrabold text-white shadow-md shadow-emerald-900/25 hover:from-emerald-700 hover:to-green-700 active:scale-98 transition-all"
+              >
+                <MessageCircle className="h-4 w-4" />
+                <span>Join Official WhatsApp Group</span>
+                <ExternalLink className="h-3.5 w-3.5 ml-0.5 opacity-90" />
+              </a>
+            </div>
+
             {/* Quick Actions */}
-            <div className="mt-5 space-y-2.5">
-              {/* WhatsApp Share */}
+            <div className="mt-4 space-y-2.5">
+              {/* WhatsApp Share invitation */}
               <button
                 onClick={handleShareWhatsApp}
-                className="w-full flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 py-3 text-xs sm:text-sm font-bold text-white shadow-md shadow-emerald-700/20 hover:bg-emerald-700 active:scale-98 transition-all"
+                className="w-full flex items-center justify-center gap-2 rounded-xl border border-stone-300 bg-white py-2.5 text-xs font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
               >
-                <Share2 className="h-4 w-4" />
-                <span>Share with Friends on WhatsApp</span>
+                <Share2 className="h-3.5 w-3.5 text-emerald-600" />
+                <span>Share Invitation with Friends on WhatsApp</span>
               </button>
 
               {/* Calendar Buttons */}
