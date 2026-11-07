@@ -33,9 +33,6 @@ export const config = {
     hashtag: "#AmrithaAndSanjay",
     tagline: "Before we step into wedding elegance, let's play our hearts out! 💍✨",
     heroSubtitle: "A warm, joyful pre-wedding evening filled with friendly matches, laughter, custom jerseys, and dinner under glowing fairy lights.",
-    // Elegant couple portrait with warm golden rose tones
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80",
-    ringPhoto: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=80",
   },
 
   // Event Date & Timings
@@ -173,38 +170,6 @@ export const config = {
     { size: "XL", chest: 107, length: 74, shoulder: 48 },
     { size: "XXL", chest: 112, length: 76, shoulder: 50 },
     { size: "3XL", chest: 117, length: 78, shoulder: 52 },
-  ],
-
-  // "Our Story" Photo Gallery with Moments & Captions
-  gallery: [
-    {
-      id: 1,
-      title: "How We Met",
-      caption: "A chance meeting that turned into endless conversations, shared laughter, and a bond that grew stronger every day.",
-      image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80",
-      tag: "The Beginning",
-    },
-    {
-      id: 2,
-      title: "Playful Weekends",
-      caption: "From board games and box matches to late-night drives and coffee stops, every moment with Sanjay is a joyful adventure.",
-      image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80",
-      tag: "Fun Memories",
-    },
-    {
-      id: 3,
-      title: "The Golden Proposal",
-      caption: "Under a warm sunset sky, Sanjay asked the most magical question of all — and Amritha said the easiest 'Yes' of her life.",
-      image: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1000&q=80",
-      tag: "She Said Yes!",
-    },
-    {
-      id: 4,
-      title: "Ready to Celebrate with You",
-      caption: "Before the traditional rituals, we want to kick back, wear our jerseys, and make magical memories with our favorite people!",
-      image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
-      tag: "Pre-Wedding Vibes",
-    },
   ],
 
   // Organizers Contact Info (Footer)

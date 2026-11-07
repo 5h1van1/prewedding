@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { config, resolveImageUrl } from '../config';
+import { config } from '../config';
 import Countdown from './Countdown';
 import { Calendar, MapPin, Sparkles, ChevronDown, Heart } from 'lucide-react';
 
@@ -13,17 +13,22 @@ export default function Hero() {
   const primaryDate = config.dates[0];
 
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-6 pb-14 sm:pb-20">
-      {/* Background Couple Photo with Warm Rose & Golden Lighting */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={resolveImageUrl(config.couple.heroImage)}
-          alt={`${config.couple.brideName} and ${config.couple.groomName}`}
-          className="h-full w-full object-cover object-center scale-105 filter brightness-[0.82] contrast-[1.04]"
-        />
-        {/* Luxurious Rose & Gold Wedding Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-rose-950/30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-rose-950/40 via-transparent to-stone-950/80" />
+    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-6 pb-14 sm:pb-20 bg-stone-950">
+      {/* Luxurious Rose & Gold Wedding Glows & Night Stadium Floodlight Ambience (No stock photos) */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Deep ambient dark gradients */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1c0812] via-[#0f0c0d] to-[#0a0708]" />
+        
+        {/* Radial rose gold floodlight glows */}
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-rose-600/25 via-amber-500/15 to-transparent blur-3xl rounded-full opacity-70" />
+        <div className="absolute bottom-10 left-10 w-96 h-96 bg-rose-700/15 blur-3xl rounded-full" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-amber-600/15 blur-3xl rounded-full" />
+
+        {/* Elegant geometric wedding arches */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+          <div className="w-[520px] h-[520px] rounded-full border border-amber-300" />
+          <div className="absolute w-[680px] h-[680px] rounded-full border border-rose-300 border-dashed" />
+        </div>
       </div>
 
       {/* Romantic Golden Bokeh Glows */}
@@ -37,7 +42,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full bg-stone-900/70 via-rose-950/60 to-amber-950/60 px-4 py-1.5 backdrop-blur-md border border-amber-300/40 mb-4 shadow-lg shadow-black/20"
+          className="inline-flex items-center gap-2 rounded-full bg-stone-900/80 via-rose-950/70 to-amber-950/70 px-4 py-1.5 backdrop-blur-md border border-amber-300/40 mb-4 shadow-lg shadow-black/30"
         >
           <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-spin-slow" />
           <span className="text-xs font-semibold tracking-widest uppercase text-amber-200">
