@@ -34,7 +34,6 @@ export const config = {
     tagline: "Before we step into wedding elegance, let's play our hearts out! 💍✨",
     heroSubtitle: "A warm, joyful pre-wedding evening filled with friendly matches, laughter, custom jerseys, and dinner under glowing fairy lights.",
     photoUrl: "/photos/couple.jpg",
-    drivePhotoUrl: "https://drive.google.com/file/d/1V07IuhzMno7KvAgiKcDrpu7llPmkj_he/view?usp=sharing",
   },
 
   // Event Date & Timings
@@ -60,8 +59,8 @@ export const config = {
   introVideo: {
     title: "Introducing Amritha & Sanjay",
     subtitle: "A glimpse into our story & moments together before the celebration match!",
-    googleDriveUrl: "https://drive.google.com/file/d/1ysO38QxdAXsJpIKa_J9XkUM6DWtPpf9N/view?usp=sharing",
-    embedUrl: "https://drive.google.com/file/d/1ysO38QxdAXsJpIKa_J9XkUM6DWtPpf9N/preview",
+    googleDriveUrl: "https://drive.google.com/file/d/1ySP50b4iMuBWomeMwwBNRfxGBCd2G8DE/view?usp=sharing",
+    embedUrl: "https://drive.google.com/file/d/1ySP50b4iMuBWomeMwwBNRfxGBCd2G8DE/preview",
     localVideoUrl: "/videos/intro.mp4",
   },
 

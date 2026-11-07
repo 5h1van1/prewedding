@@ -4,7 +4,6 @@ import { config, resolveImageUrl } from '../config';
 import {
   Heart,
   Sparkles,
-  ExternalLink,
   Film,
   Volume2,
   VolumeX,
@@ -20,16 +19,10 @@ export default function StoryGallery() {
   const introVideo = config.introVideo || {
     title: 'Introducing Amritha & Sanjay',
     subtitle: 'A glimpse into our journey together before the celebration match! 💍✨',
-    googleDriveUrl:
-      'https://drive.google.com/file/d/1ysO38QxdAXsJpIKa_J9XkUM6DWtPpf9N/view?usp=sharing',
-    embedUrl: 'https://drive.google.com/file/d/1ysO38QxdAXsJpIKa_J9XkUM6DWtPpf9N/preview',
     localVideoUrl: '/videos/intro.mp4',
   };
 
   const couplePhotoUrl = config.couple.photoUrl || '/photos/couple.jpg';
-  const couplePhotoDriveUrl =
-    config.couple.drivePhotoUrl ||
-    'https://drive.google.com/file/d/1V07IuhzMno7KvAgiKcDrpu7llPmkj_he/view?usp=sharing';
 
   const toggleSound = () => {
     if (videoRef.current) {
@@ -56,11 +49,11 @@ export default function StoryGallery() {
             Meet <span className="text-rose-700">Amritha</span> & <span className="text-amber-700">Sanjay</span>
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 mt-2 max-w-lg mx-auto leading-relaxed">
-            From cheerful banter to forever teammates. Watch our official couple intro video looping below, and meet the captains before turf clash! ✨💍
+            From cheerful banter to forever teammates. Watch our couple introduction video below, and meet the captains before the turf clash! ✨💍
           </p>
         </div>
 
-        {/* Side-by-Side Dual Feature: Couple Portrait + Looping Intro Video */}
+        {/* Side-by-Side Dual Feature: Couple Portrait + Intro Video */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto items-stretch">
           {/* Card 1: Couple Official Portrait */}
           <motion.div
@@ -88,18 +81,6 @@ export default function StoryGallery() {
                   <span>The Captains</span>
                 </span>
               </div>
-
-              {/* Top-Right Drive Link */}
-              <a
-                href={couplePhotoDriveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="View photo on Google Drive"
-                className="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 rounded-full bg-black/75 hover:bg-black px-3.5 py-1 text-[11px] font-semibold text-white backdrop-blur-md transition-all border border-white/20 shadow-md"
-              >
-                <span>View Full Photo</span>
-                <ExternalLink className="h-3 w-3" />
-              </a>
 
               {/* In-Photo Bottom Caption */}
               <div className="absolute bottom-4 left-4 right-4 z-10 text-white">
@@ -129,20 +110,14 @@ export default function StoryGallery() {
                 <span className="text-[11px] font-semibold text-stone-500 font-serif">
                   {config.couple.hashtag}
                 </span>
-                <a
-                  href={couplePhotoDriveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-rose-700 hover:text-rose-900 transition-colors"
-                >
-                  <span>Open Drive Photo</span>
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
+                <span className="text-[11px] font-medium text-rose-700/80">
+                  Pre-Wedding Celebration
+                </span>
               </div>
             </div>
           </motion.div>
 
-          {/* Card 2: Couple Intro Video Playing in Loop */}
+          {/* Card 2: Couple Intro Video */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -152,68 +127,44 @@ export default function StoryGallery() {
           >
             {/* Video Container (aspect matches portrait / vertical reel) */}
             <div className="relative aspect-[9/13] sm:aspect-[4/5] md:aspect-[9/13] w-full overflow-hidden bg-black flex items-center justify-center">
-              {introVideo.localVideoUrl ? (
-                <video
-                  ref={videoRef}
-                  src={resolveImageUrl(introVideo.localVideoUrl)}
-                  autoPlay
-                  loop
-                  muted={isMuted}
-                  playsInline
-                  controls
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <iframe
-                  src={introVideo.embedUrl}
-                  title={introVideo.title}
-                  className="h-full w-full border-0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                />
-              )}
+              <video
+                ref={videoRef}
+                src={resolveImageUrl(introVideo.localVideoUrl)}
+                autoPlay
+                loop
+                muted={isMuted}
+                playsInline
+                controls
+                className="h-full w-full object-cover"
+              />
 
               {/* Tag Badge Top-Left */}
               <div className="absolute top-3.5 left-3.5 pointer-events-none z-10">
                 <span className="rounded-full bg-stone-950/85 backdrop-blur-md px-3 py-1 text-[11px] font-bold text-amber-300 border border-amber-300/40 shadow-md flex items-center gap-1.5">
                   <Film className="h-3.5 w-3.5 text-amber-300" />
-                  <span>Intro Video • Looping</span>
+                  <span>Intro Video</span>
                 </span>
               </div>
 
-              {/* Direct Drive Button Top-Right */}
-              <a
-                href={introVideo.googleDriveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Open video in Google Drive"
-                className="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 rounded-full bg-black/75 hover:bg-black px-3.5 py-1 text-[11px] font-semibold text-white backdrop-blur-md transition-all border border-white/20 shadow-md"
-              >
-                <span>Watch on Drive</span>
-                <ExternalLink className="h-3 w-3" />
-              </a>
-
               {/* Sound Toggle Button (Bottom-Right Floating) */}
-              {introVideo.localVideoUrl && (
-                <button
-                  onClick={toggleSound}
-                  type="button"
-                  title={isMuted ? 'Click to unmute sound' : 'Click to mute sound'}
-                  className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 rounded-full bg-stone-900/90 hover:bg-stone-900 text-amber-300 border border-amber-400/60 px-3 py-1.5 text-xs font-bold shadow-lg backdrop-blur-md transition-all active:scale-95"
-                >
-                  {isMuted ? (
-                    <>
-                      <VolumeX className="h-4 w-4 text-rose-400" />
-                      <span>Unmute</span>
-                    </>
-                  ) : (
-                    <>
-                      <Volume2 className="h-4 w-4 text-emerald-400" />
-                      <span>Muted</span>
-                    </>
-                  )}
-                </button>
-              )}
+              <button
+                onClick={toggleSound}
+                type="button"
+                title={isMuted ? 'Click to unmute sound' : 'Click to mute sound'}
+                className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 rounded-full bg-stone-900/90 hover:bg-stone-900 text-amber-300 border border-amber-400/60 px-3 py-1.5 text-xs font-bold shadow-lg backdrop-blur-md transition-all active:scale-95"
+              >
+                {isMuted ? (
+                  <>
+                    <VolumeX className="h-4 w-4 text-rose-400" />
+                    <span>Unmute</span>
+                  </>
+                ) : (
+                  <>
+                    <Volume2 className="h-4 w-4 text-emerald-400" />
+                    <span>Mute</span>
+                  </>
+                )}
+              </button>
             </div>
 
             {/* Video Card Footer Info */}
@@ -229,17 +180,11 @@ export default function StoryGallery() {
 
               <div className="mt-3 pt-3 border-t border-stone-800/80 flex items-center justify-between">
                 <span className="text-[11px] text-amber-300/80 flex items-center gap-1">
-                  <Sparkles className="h-3 w-3 text-amber-400" /> Playing in loop
+                  <Sparkles className="h-3 w-3 text-amber-400" /> Amritha & Sanjay
                 </span>
-                <a
-                  href={introVideo.googleDriveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-300 hover:text-amber-200 transition-colors"
-                >
-                  <span>Open Drive Link</span>
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
+                <span className="text-[11px] text-stone-400 font-serif italic">
+                  #AmrithaAndSanjay
+                </span>
               </div>
             </div>
           </motion.div>
