@@ -46,7 +46,7 @@ export default function Timeline() {
             Plan of the Evening
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 mt-2 max-w-md mx-auto leading-relaxed">
-            From welcome drinks and jersey gifts to boundary sixers, cake cutting, and dinner under warm fairy lights.
+            From team jersey handover to boundary sixers, cake cutting, and dinner under warm fairy lights.
           </p>
         </div>
 

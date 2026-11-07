@@ -16,7 +16,7 @@ export function resolveImageUrl(url) {
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
     return url;
   }
-  // Convert root-relative /photos/ to ./photos/ for relative static hosting
+  // Convert root-relative /photos/ or /videos/ to ./photos/ or ./videos/ for relative static hosting
   if (url.startsWith('/')) {
     return '.' + url;
   }
@@ -33,6 +33,8 @@ export const config = {
     hashtag: "#AmrithaAndSanjay",
     tagline: "Before we step into wedding elegance, let's play our hearts out! 💍✨",
     heroSubtitle: "A warm, joyful pre-wedding evening filled with friendly matches, laughter, custom jerseys, and dinner under glowing fairy lights.",
+    photoUrl: "/photos/couple.jpg",
+    drivePhotoUrl: "https://drive.google.com/file/d/1V07IuhzMno7KvAgiKcDrpu7llPmkj_he/view?usp=sharing",
   },
 
   // Event Date & Timings
@@ -58,9 +60,9 @@ export const config = {
   introVideo: {
     title: "Introducing Amritha & Sanjay",
     subtitle: "A glimpse into our story & moments together before the celebration match!",
-    googleDriveUrl: "https://drive.google.com/file/d/1ysO38QxdAXsJpIKa_J9XkUM6DWtPpf9N/view?usp=drive_link",
+    googleDriveUrl: "https://drive.google.com/file/d/1ysO38QxdAXsJpIKa_J9XkUM6DWtPpf9N/view?usp=sharing",
     embedUrl: "https://drive.google.com/file/d/1ysO38QxdAXsJpIKa_J9XkUM6DWtPpf9N/preview",
-    localVideoUrl: "", // Optional local mp4 fallback if added to public/photos/
+    localVideoUrl: "/videos/intro.mp4",
   },
 
   // Venue Details
@@ -112,8 +114,8 @@ export const config = {
     {
       step: 1,
       time: "5:00 PM",
-      title: "Welcome Drinks & Jersey Gifting",
-      description: "Arrival cocktails, mocktails, collecting your customized match jersey, and lacing up your sneakers.",
+      title: "Arrival & Team Jersey Handover",
+      description: "Arrival, collecting your customized match jersey, and getting geared up for the turf match.",
       icon: "Shirt",
       highlight: false,
     },

@@ -18,7 +18,7 @@ Instead of sending out a boring Google Form link, we built a full-fledged, mobil
 - **Date:** Thursday, January 28, 2027 (5:00 PM – 8:00 PM)
 - **Venue:** The Pavilion Arena, Bandra West, Mumbai
 - **Schedule:**
-  1. Welcome Drinks & Jersey Gifting
+  1. Arrival & Team Jersey Handover
   2. The Friendly Clash: **Team Amritha (Rose)** vs **Team Sanjay (Gold)**
   3. The Great Tug-of-War Battle on center turf
   4. Celebration Cake Cutting & Toasts
@@ -40,7 +40,7 @@ Instead of sending out a boring Google Form link, we built a full-fledged, mobil
   - Full-screen confetti cannon.
   - Digital personalized match ticket pass with guest name, squad badge, match date, and jersey size.
   - One-click **"Add to Calendar"** (.ics file download & Google Calendar link).
-  - WhatsApp share button with pre-filled match invite text.
+  - One-click **"Join Official WhatsApp Group"** for live coordinator updates and announcements.
 - **🛡️ Organizer Admin Portal (`/#admin`):**
   - Secured by **Firebase Email/Password Authentication** restricted to the authorized organizer UID.
   - Live analytics cards: Total Guests, squad balance, and jersey counts.

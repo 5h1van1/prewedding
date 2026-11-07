@@ -6,7 +6,6 @@ import { generateIcsCalendar, getGoogleCalendarUrl } from '../services/calendar'
 import {
   CheckCircle2,
   Calendar,
-  Share2,
   Download,
   Edit3,
   X,
@@ -88,13 +87,6 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
       endTime: '20:00',
     });
     window.open(url, '_blank');
-  };
-
-  const handleShareWhatsApp = () => {
-    const text = encodeURIComponent(
-      `💍✨ Hey! I just RSVP'd for ${config.couple.brideName} & ${config.couple.groomName}'s Pre-Wedding Celebration on ${selectedDateObj.shortDate}!\nI'm on *${teamConfig.name}*! 🎉\n\nPick your squad and grab your jersey here: ${window.location.origin}`
-    );
-    window.open(`https://wa.me/?text=${text}`, '_blank');
   };
 
   const whatsappGroupLink =
@@ -209,7 +201,7 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
               </div>
             </div>
 
-            {/* Official WhatsApp Group Join Card (Primary for communication) */}
+            {/* Official WhatsApp Group Join Card (Primary for communication & coordinator updates) */}
             <div className="mt-5 rounded-2xl bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100/80 p-4 border-2 border-emerald-400 shadow-md">
               <div className="flex items-center gap-2.5 text-emerald-950 font-bold text-sm font-serif">
                 <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-600 text-white shrink-0 shadow-sm">
@@ -218,13 +210,13 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
                 <div>
                   <h5 className="leading-tight font-extrabold text-emerald-950">Join Our WhatsApp Group! 💬</h5>
                   <span className="text-[10px] text-emerald-700 font-sans font-semibold uppercase tracking-wider">
-                    For further communication & updates
+                    Official updates from coordinators
                   </span>
                 </div>
               </div>
 
               <p className="text-xs text-stone-700 mt-2 leading-relaxed">
-                Please join the official celebration WhatsApp group where match fixtures, jersey pickup details, photo drops, and further updates will be shared!
+                Please join the official celebration WhatsApp group to get team rosters, match schedule, jersey distribution, and further info directly from the coordinators!
               </p>
 
               <a
@@ -241,15 +233,6 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
 
             {/* Quick Actions */}
             <div className="mt-4 space-y-2.5">
-              {/* WhatsApp Share invitation */}
-              <button
-                onClick={handleShareWhatsApp}
-                className="w-full flex items-center justify-center gap-2 rounded-xl border border-stone-300 bg-white py-2.5 text-xs font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
-              >
-                <Share2 className="h-3.5 w-3.5 text-emerald-600" />
-                <span>Share Invitation with Friends on WhatsApp</span>
-              </button>
-
               {/* Calendar Buttons */}
               <div className="grid grid-cols-2 gap-2">
                 <button

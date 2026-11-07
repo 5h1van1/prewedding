@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { config } from '../config';
+import { config, resolveImageUrl } from '../config';
 import Countdown from './Countdown';
 import { Calendar, MapPin, Sparkles, ChevronDown, Heart } from 'lucide-react';
 
@@ -42,7 +42,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full bg-stone-900/80 via-rose-950/70 to-amber-950/70 px-4 py-1.5 backdrop-blur-md border border-amber-300/40 mb-4 shadow-lg shadow-black/30"
+          className="inline-flex items-center gap-2 rounded-full bg-stone-900/80 via-rose-950/70 to-amber-950/70 px-4 py-1.5 backdrop-blur-md border border-amber-300/40 mb-3 shadow-lg shadow-black/30"
         >
           <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-spin-slow" />
           <span className="text-xs font-semibold tracking-widest uppercase text-amber-200">
@@ -50,6 +50,28 @@ export default function Hero() {
           </span>
           <Heart className="h-3 w-3 text-rose-400 fill-rose-400" />
         </motion.div>
+
+        {/* Real Couple Portrait Halo Frame */}
+        {config.couple.photoUrl && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.05 }}
+            className="relative mb-3 group"
+          >
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-rose-500 via-amber-400 to-rose-500 blur-sm opacity-70 group-hover:opacity-100 transition duration-500" />
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-amber-300 shadow-2xl shadow-rose-950/80 bg-stone-900">
+              <img
+                src={resolveImageUrl(config.couple.photoUrl)}
+                alt={`${config.couple.brideName} & ${config.couple.groomName}`}
+                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-stone-900/90 text-amber-300 border border-amber-300/60 rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase whitespace-nowrap shadow-md">
+              💍 The Couple
+            </div>
+          </motion.div>
+        )}
 
         {/* Couple Names with Prominent Capital 'A' */}
         <motion.div
