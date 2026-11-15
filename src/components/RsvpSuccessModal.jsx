@@ -69,7 +69,7 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
   const handleDownloadIcs = () => {
     generateIcsCalendar({
       title: `${config.couple.brideName} & ${config.couple.groomName}: Pre-Wedding Celebration 💍✨`,
-      description: `Pre-Wedding Celebration & Match!\nSquad: ${teamConfig.name}\nJersey: ${rsvpData.needsJersey ? rsvpData.jerseySize : 'None'}\n\nWear sneakers & party chic casuals!`,
+      description: `Pre-Wedding Celebration & Match!\nSquad: ${teamConfig.name}\nJersey: ${rsvpData.needsJersey ? `Size ${rsvpData.jerseySize}${rsvpData.jerseyNumber && rsvpData.jerseyNumber !== 'None' ? ` (#${rsvpData.jerseyNumber})` : ''}` : 'None'}\n\nWear sneakers & party chic casuals!`,
       location: 'Shared via WhatsApp Group Chat',
       dateId: rsvpData.preferredDate,
       startTime: '17:00',
@@ -80,7 +80,7 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
   const handleGoogleCalendar = () => {
     const url = getGoogleCalendarUrl({
       title: `${config.couple.brideName} & ${config.couple.groomName}: Pre-Wedding Celebration 💍✨`,
-      description: `Pre-Wedding Celebration & Match!\nSquad: ${teamConfig.name}\nJersey: ${rsvpData.needsJersey ? rsvpData.jerseySize : 'None'}`,
+      description: `Pre-Wedding Celebration & Match!\nSquad: ${teamConfig.name}\nJersey: ${rsvpData.needsJersey ? `Size ${rsvpData.jerseySize}${rsvpData.jerseyNumber && rsvpData.jerseyNumber !== 'None' ? ` (#${rsvpData.jerseyNumber})` : ''}` : 'None'}`,
       location: 'Shared via WhatsApp Group Chat',
       dateId: rsvpData.preferredDate,
       startTime: '17:00',
@@ -190,7 +190,7 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
                   <span className="text-stone-400 block text-[11px] font-serif">Custom Jersey</span>
                   <span className="font-bold text-stone-800 flex items-center gap-1 mt-0.5">
                     <Shirt className="h-3.5 w-3.5 text-amber-600" />
-                    {rsvpData.needsJersey ? `Size ${rsvpData.jerseySize}` : 'No Jersey'}
+                    {rsvpData.needsJersey ? `Size ${rsvpData.jerseySize}${rsvpData.jerseyNumber && rsvpData.jerseyNumber !== 'None' ? ` (#${rsvpData.jerseyNumber})` : ''}` : 'No Jersey'}
                   </span>
                 </div>
               </div>

@@ -12,7 +12,7 @@ service cloud.firestore {
     function isValidGuestRsvp(data, docId) {
       let allowedKeys = [
         'id', 'name', 'team', 'preferredDate', 
-        'needsJersey', 'jerseySize', 'source', 
+        'needsJersey', 'jerseySize', 'jerseyNumber', 'source', 
         'createdAt', 'updatedAt'
       ];
 
@@ -42,6 +42,10 @@ service cloud.firestore {
           (data.needsJersey == true && data.jerseySize in ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL'])
           || (data.needsJersey == false && data.jerseySize == 'None')
         )
+
+        // Jersey number validation: string (e.g. "7", "10", or "None" if no jersey)
+        && data.jerseyNumber is string
+        && data.jerseyNumber.size() <= 10
 
         // Metadata validation
         && data.source == 'cloud'

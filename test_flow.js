@@ -27,6 +27,7 @@ async function testRsvpFlow() {
     preferredDate: '2027-01-28',
     needsJersey: true,
     jerseySize: 'XL',
+    jerseyNumber: '18',
   });
   console.log('✓ Result 1:', res1);
 
@@ -38,7 +39,10 @@ async function testRsvpFlow() {
   }
 
   const found1 = currentRsvps.find((r) => r.id === res1.docId);
-  console.log('✓ Verified document 1 in store:', found1 ? `${found1.name} (ID: ${found1.id}, Squad: ${found1.team}, Size: ${found1.jerseySize})` : 'NOT FOUND');
+  console.log('✓ Verified document 1 in store:', found1 ? `${found1.name} (ID: ${found1.id}, Squad: ${found1.team}, Size: ${found1.jerseySize}, No: #${found1.jerseyNumber})` : 'NOT FOUND');
+  if (!found1 || found1.jerseyNumber !== '18') {
+    throw new Error('Expected Doc1 to have jerseyNumber: 18');
+  }
   if (currentRsvps.length !== initialCount + 1) {
     throw new Error(`Expected count to increase by 1, but got ${currentRsvps.length}`);
   }
@@ -53,6 +57,7 @@ async function testRsvpFlow() {
     preferredDate: '2027-01-28',
     needsJersey: true,
     jerseySize: 'L',
+    jerseyNumber: '7',
   });
   console.log('✓ Result 2:', res2);
 
@@ -86,6 +91,7 @@ async function testRsvpFlow() {
     preferredDate: '2027-01-28',
     needsJersey: true,
     jerseySize: 'XXL',
+    jerseyNumber: '99',
   });
   console.log('✓ Result Admin Edit:', resAdminEdit);
 
@@ -94,10 +100,10 @@ async function testRsvpFlow() {
   }
 
   const updatedDoc1 = currentRsvps.find((r) => r.id === res1.docId);
-  if (!updatedDoc1 || updatedDoc1.jerseySize !== 'XXL') {
+  if (!updatedDoc1 || updatedDoc1.jerseySize !== 'XXL' || updatedDoc1.jerseyNumber !== '99') {
     throw new Error('Expected Doc1 to be updated with new values!');
   }
-  console.log(`✓ Admin update verified: ${updatedDoc1.name} (Size: ${updatedDoc1.jerseySize})`);
+  console.log(`✓ Admin update verified: ${updatedDoc1.name} (Size: ${updatedDoc1.jerseySize}, No: #${updatedDoc1.jerseyNumber})`);
 
   // -------------------------------------------------------------
   // TEST 4: Cleanup & Teardown

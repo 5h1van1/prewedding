@@ -168,6 +168,7 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
     preferredDate: config.dates[0]?.id || '2027-01-28',
     needsJersey: true,
     jerseySize: 'M',
+    jerseyNumber: '',
   });
   const [modalSaving, setModalSaving] = useState(false);
   const [modalError, setModalError] = useState('');
@@ -181,6 +182,7 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
       preferredDate: config.dates[0]?.id || '2027-01-28',
       needsJersey: true,
       jerseySize: 'M',
+      jerseyNumber: '',
     });
     setIsModalOpen(true);
   };
@@ -194,6 +196,7 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
       preferredDate: rsvp.preferredDate || config.dates[0]?.id || '2027-01-28',
       needsJersey: Boolean(rsvp.needsJersey),
       jerseySize: rsvp.jerseySize && rsvp.jerseySize !== 'None' ? rsvp.jerseySize : 'M',
+      jerseyNumber: rsvp.jerseyNumber && rsvp.jerseyNumber !== 'None' ? rsvp.jerseyNumber : '',
     });
     setIsModalOpen(true);
   };
@@ -287,7 +290,11 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
   // Filtered RSVPs
   const filteredRsvps = useMemo(() => {
     return effectiveRsvps.filter((r) => {
-      const matchesSearch = r.name?.toLowerCase().includes(searchQuery.toLowerCase().trim());
+      const q = searchQuery.toLowerCase().trim();
+      const matchesSearch =
+        (r.name || '').toLowerCase().includes(q) ||
+        (r.jerseyNumber || '').toLowerCase().includes(q) ||
+        (r.jerseySize || '').toLowerCase().includes(q);
       const matchesTeam = teamFilter === 'all' || r.team === teamFilter;
       const matchesDate = dateFilter === 'all' || r.preferredDate === dateFilter;
       const matchesJersey =
@@ -301,13 +308,14 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
 
   // Export to CSV
   const handleExportCsv = () => {
-    const headers = ['Player Name', 'Squad', 'Preferred Date', 'Needs Jersey', 'Jersey Size', 'Last Updated', 'Source'];
+    const headers = ['Player Name', 'Squad', 'Preferred Date', 'Needs Jersey', 'Jersey Size', 'Jersey Number', 'Last Updated', 'Source'];
     const rows = filteredRsvps.map((r) => [
       `"${r.name || ''}"`,
       r.team === 'bride' ? 'Team Amritha (Rose)' : 'Team Sanjay (Gold)',
       r.preferredDate || '',
       r.needsJersey ? 'Yes' : 'No',
       r.needsJersey ? r.jerseySize : 'None',
+      r.needsJersey ? (r.jerseyNumber || 'None') : 'None',
       r.updatedAt || r.createdAt || '',
       r.source || (r.isCloud ? 'cloud' : 'local'),
     ]);
@@ -740,6 +748,11 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
                           <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-emerald-800 border border-emerald-200">
                             <Shirt className="h-3 w-3 text-emerald-600" />
                             <span>Size: {rsvp.jerseySize}</span>
+                            {rsvp.jerseyNumber && rsvp.jerseyNumber !== 'None' && (
+                              <span className="font-mono text-emerald-950 bg-emerald-100/70 px-1 rounded">
+                                #{rsvp.jerseyNumber}
+                              </span>
+                            )}
                           </span>
                         ) : (
                           <span className="text-slate-400 text-[11px]">No Jersey</span>
@@ -885,21 +898,36 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
               </div>
 
               {modalForm.needsJersey && (
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                    Jersey Size
-                  </label>
-                  <select
-                    value={modalForm.jerseySize}
-                    onChange={(e) => setModalForm({ ...modalForm, jerseySize: e.target.value })}
-                    className="w-full rounded-xl border border-slate-300 bg-slate-50 py-2.5 px-3 text-xs font-semibold text-slate-900 focus:outline-none"
-                  >
-                    {config.jerseySizeChart.map((s) => (
-                      <option key={s.size} value={s.size}>
-                        Size {s.size} (Chest: {s.chest}cm)
-                      </option>
-                    ))}
-                  </select>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Jersey Size
+                    </label>
+                    <select
+                      value={modalForm.jerseySize}
+                      onChange={(e) => setModalForm({ ...modalForm, jerseySize: e.target.value })}
+                      className="w-full rounded-xl border border-slate-300 bg-slate-50 py-2.5 px-3 text-xs font-semibold text-slate-900 focus:outline-none"
+                    >
+                      {config.jerseySizeChart.map((s) => (
+                        <option key={s.size} value={s.size}>
+                          Size {s.size} ({s.chest}")
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Jersey Number
+                    </label>
+                    <input
+                      type="text"
+                      maxLength={4}
+                      value={modalForm.jerseyNumber}
+                      onChange={(e) => setModalForm({ ...modalForm, jerseyNumber: e.target.value.replace(/[^0-9a-zA-Z]/g, '').slice(0, 4) })}
+                      placeholder="e.g. 7, 10, 18"
+                      className="w-full rounded-xl border border-slate-300 bg-slate-50 py-2.5 px-3 text-xs font-semibold text-slate-900 focus:outline-none"
+                    />
+                  </div>
                 </div>
               )}
 

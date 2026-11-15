@@ -16,6 +16,7 @@ import {
   ArrowRight,
   ArrowLeft,
   Heart,
+  Hash,
 } from 'lucide-react';
 
 export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [] }) {
@@ -25,6 +26,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
   const [preferredDate, setPreferredDate] = useState(config.dates[0]?.id || '2027-01-28');
   const [needsJersey, setNeedsJersey] = useState(true);
   const [jerseySize, setJerseySize] = useState('M');
+  const [jerseyNumber, setJerseyNumber] = useState('');
 
   // UI State
   const [currentStep, setCurrentStep] = useState(1);
@@ -65,6 +67,10 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
         setErrorMsg('Please pick a jersey size.');
         return false;
       }
+      if (!jerseyNumber.trim()) {
+        setErrorMsg('Please enter your preferred jersey number (e.g. 7, 10, 18).');
+        return false;
+      }
     }
     return true;
   };
@@ -103,6 +109,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
         preferredDate,
         needsJersey,
         jerseySize: needsJersey ? jerseySize : 'None',
+        jerseyNumber: needsJersey ? (jerseyNumber.trim().slice(0, 10) || 'None') : 'None',
       };
 
       const result = await saveRsvp(payload);
@@ -135,7 +142,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
             Reserve Your Spot & Jersey
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-md mx-auto">
-            {config.dates[0]?.fullDate || 'Thursday, Jan 28, 2027'} • Pick your squad & jersey size for custom printing.
+            {config.dates[0]?.fullDate || 'Thursday, Jan 28, 2027'} • Pick your squad, jersey size & number for custom printing.
           </p>
         </div>
 
@@ -149,7 +156,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                 {currentStep === 1 && 'Player Info'}
                 {currentStep === 2 && 'Select Squad'}
                 {currentStep === 3 && 'Jersey Option'}
-                {currentStep === 4 && 'Select Size'}
+                {currentStep === 4 && 'Jersey Details'}
               </span>
             </div>
 
@@ -347,7 +354,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                 </motion.div>
               )}
 
-              {/* STEP 4: Jersey Size (Only shown if needsJersey is true) */}
+              {/* STEP 4: Jersey Details (Size & Number) */}
               {currentStep === 4 && needsJersey && (
                 <motion.div
                   key="step4"
@@ -355,8 +362,9 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.2 }}
-                  className="space-y-4"
+                  className="space-y-5"
                 >
+                  {/* Jersey Size Selection */}
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <label className="text-sm font-bold text-stone-800 font-serif">
@@ -397,6 +405,40 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                           </button>
                         );
                       })}
+                    </div>
+                  </div>
+
+                  {/* Preferred Jersey Number Input */}
+                  <div className="pt-3 border-t border-rose-100">
+                    <label htmlFor="jerseyNumber" className="block text-sm font-bold text-stone-800 mb-1 font-serif">
+                      Preferred Jersey Number <span className="text-rose-500">*</span>
+                    </label>
+                    <p className="text-xs text-stone-500 mb-2.5">
+                      Enter your lucky match number (e.g., 7, 10, 18, 99) to be printed on your custom jersey.
+                    </p>
+                    <div className="relative max-w-xs">
+                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-amber-600 font-bold font-mono text-base">
+                        #
+                      </div>
+                      <input
+                        id="jerseyNumber"
+                        type="text"
+                        maxLength={4}
+                        value={jerseyNumber}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/[^0-9a-zA-Z]/g, '').slice(0, 4);
+                          setJerseyNumber(val);
+                          if (errorMsg) setErrorMsg('');
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            handleSubmit();
+                          }
+                        }}
+                        placeholder="e.g. 7, 10, 18, 99"
+                        className="w-full rounded-2xl border border-rose-200 bg-[#fffaf5] py-3 pl-9 pr-4 text-sm font-bold text-stone-900 placeholder:text-stone-400 placeholder:font-normal focus:border-rose-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-rose-500/15 transition-all"
+                      />
                     </div>
                   </div>
                 </motion.div>
