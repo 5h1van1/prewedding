@@ -5,7 +5,6 @@ import FaceOffBanner from './components/FaceOffBanner';
 import Timeline from './components/Timeline';
 import StoryGallery from './components/StoryGallery';
 import RsvpForm from './components/RsvpForm';
-import VenueSection from './components/VenueSection';
 import Footer from './components/Footer';
 import AdminView from './components/AdminView';
 import RsvpSuccessModal from './components/RsvpSuccessModal';
@@ -115,8 +114,6 @@ export default function App() {
           existingRsvps={rsvps}
         />
 
-        {/* Venue, Turf Info & Google Maps link */}
-        <VenueSection />
       </main>
 
       {/* Footer with Hashtag, Contacts, and Admin Link */}

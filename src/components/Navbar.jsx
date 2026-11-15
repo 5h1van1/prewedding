@@ -77,12 +77,6 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
             >
               Story & Video
             </button>
-            <button
-              onClick={() => scrollToSection('venue')}
-              className="hover:text-rose-700 transition-colors font-serif"
-            >
-              Venue Info
-            </button>
           </div>
 
           {/* Action Buttons */}
@@ -149,12 +143,6 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
                 className="text-left px-3 py-2 rounded-xl hover:bg-rose-50"
               >
                 Story & Video Introduction
-              </button>
-              <button
-                onClick={() => scrollToSection('venue')}
-                className="text-left px-3 py-2 rounded-xl hover:bg-rose-50"
-              >
-                Venue & Event Info
               </button>
               <div className="pt-2 border-t border-rose-100 flex items-center justify-between">
                 <button
