@@ -372,11 +372,11 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                       </button>
                     </div>
                     <p className="text-xs text-stone-500 mb-3">
-                      Standard unisex athletic sizing (XS to 3XL):
+                      Standard unisex athletic sizing (S to XXL):
                     </p>
 
                     {/* Size Selector Grid: Rose & Gold */}
-                    <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                    <div className="grid grid-cols-5 gap-2">
                       {config.jerseySizeChart.map((item) => {
                         const isSelected = jerseySize === item.size;
                         return (
@@ -392,7 +392,7 @@ export default function RsvpForm({ initialTeam, onRsvpSuccess, existingRsvps = [
                           >
                             <span className="text-sm sm:text-base">{item.size}</span>
                             <span className={`text-[10px] mt-0.5 ${isSelected ? 'text-amber-100' : 'text-stone-400'}`}>
-                              {item.chest}cm
+                              {item.chest}"
                             </span>
                           </button>
                         );

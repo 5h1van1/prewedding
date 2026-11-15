@@ -64,15 +64,13 @@ export const config = {
     localVideoUrl: "/videos/intro.mp4",
   },
 
-  // Venue Details
+  // Venue Details (Location announced via WhatsApp group)
   venue: {
-    name: "The Pavilion Arena & Sports Turf",
-    shortLocation: "Bandra West, Mumbai",
-    address: "Off Linking Road, Next to St. Andrew's Grounds, Bandra West, Mumbai 400050",
-    googleMapsUrl: "https://maps.google.com/?q=Bandra+West+Mumbai+Cricket+Turf",
-    embedQuery: "Bandra West Mumbai",
+    name: "Pre-Wedding Celebration Arena",
+    shortLocation: "Announced via Group Chat",
+    locationNote: "Exact venue and location pin will be shared by coordinators via the official WhatsApp group chat.",
     dressCode: "Chic Athletic / Sneakers & Party Casual (Custom jerseys provided!)",
-    parkingNote: "Complimentary valet and guest parking available at the arena gates.",
+    parkingNote: "Valet and guest parking available at the arena.",
     turfType: "All-weather turf with golden canopy floodlights & luxury dugout lounge",
   },
 
@@ -162,15 +160,13 @@ export const config = {
     icon: "Sparkles",
   },
 
-  // Jersey Size Chart (Measurements in cm)
+  // Jersey Size Chart (Measurements in inches as per shirt size chart)
   jerseySizeChart: [
-    { size: "XS", chest: 86, length: 64, shoulder: 40 },
-    { size: "S", chest: 91, length: 66, shoulder: 42 },
-    { size: "M", chest: 97, length: 69, shoulder: 44 },
-    { size: "L", chest: 102, length: 71, shoulder: 46 },
-    { size: "XL", chest: 107, length: 74, shoulder: 48 },
-    { size: "XXL", chest: 112, length: 76, shoulder: 50 },
-    { size: "3XL", chest: 117, length: 78, shoulder: 52 },
+    { size: "S", chest: 36, length: 25.5, sleeve: 7, shoulder: 16 },
+    { size: "M", chest: 38, length: 26.5, sleeve: 7.5, shoulder: 16.5 },
+    { size: "L", chest: 40, length: 27.5, sleeve: 8, shoulder: 17 },
+    { size: "XL", chest: 42, length: 28.5, sleeve: 8.5, shoulder: 18 },
+    { size: "XXL", chest: 44, length: 29.5, sleeve: 9, shoulder: 19 },
   ],
 
   // Organizers Contact Info (Footer)

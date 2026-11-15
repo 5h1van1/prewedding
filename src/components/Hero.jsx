@@ -131,7 +131,7 @@ export default function Hero() {
 
           <div className="flex items-center gap-1.5 rounded-full bg-stone-900/80 border border-rose-400/30 px-3.5 py-1.5 backdrop-blur-md shadow-md">
             <MapPin className="h-3.5 w-3.5 text-rose-400" />
-            <span className="font-medium text-white">{config.venue.shortLocation}</span>
+            <span className="font-medium text-white">Location: Shared via WhatsApp</span>
           </div>
         </motion.div>
 

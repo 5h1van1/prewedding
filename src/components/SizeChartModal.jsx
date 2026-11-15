@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { config } from '../config';
-import { X, Ruler, Info } from 'lucide-react';
+import { X, Ruler, Info, Check } from 'lucide-react';
 
 export default function SizeChartModal({ isOpen, onClose, onSelectSize }) {
   if (!isOpen) return null;
@@ -23,7 +23,7 @@ export default function SizeChartModal({ isOpen, onClose, onSelectSize }) {
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="relative z-10 w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-2xl border border-rose-200"
+          className="relative z-10 w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl border border-rose-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
@@ -34,9 +34,9 @@ export default function SizeChartModal({ isOpen, onClose, onSelectSize }) {
               </div>
               <div>
                 <h3 className="text-base font-extrabold text-stone-900 font-serif">
-                  Jersey Size Chart
+                  Shirt Size Chart
                 </h3>
-                <p className="text-xs text-stone-500">Measurements in centimeters (cm)</p>
+                <p className="text-xs text-stone-500">Official measurements in inches</p>
               </div>
             </div>
 
@@ -49,54 +49,102 @@ export default function SizeChartModal({ isOpen, onClose, onSelectSize }) {
             </button>
           </div>
 
-          {/* Table */}
+          {/* Table Container */}
           <div className="p-4 sm:p-5">
-            <div className="overflow-x-auto rounded-2xl border border-rose-100 shadow-sm">
-              <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="bg-[#fffaf5] text-stone-700 font-bold uppercase tracking-wider text-[11px] border-b border-rose-100">
-                  <tr>
-                    <th className="px-3.5 py-2.5">Size</th>
-                    <th className="px-3.5 py-2.5">Chest</th>
-                    <th className="px-3.5 py-2.5">Length</th>
-                    <th className="px-3.5 py-2.5">Shoulder</th>
-                    <th className="px-2 py-2.5 text-center">Action</th>
+            <div className="overflow-x-auto rounded-2xl border border-stone-800 shadow-lg bg-stone-950 text-white">
+              {/* Header Title Banner */}
+              <div className="bg-black py-2.5 px-4 text-center border-b border-stone-800">
+                <h4 className="font-extrabold tracking-widest text-sm uppercase text-white font-mono">
+                  SHIRT SIZE CHART
+                </h4>
+              </div>
+
+              {/* Exact Matrix Matching Reference Chart */}
+              <table className="w-full text-center text-xs sm:text-sm">
+                <thead>
+                  <tr className="bg-stone-900 border-b border-stone-800 text-amber-300 font-bold uppercase text-xs sm:text-sm">
+                    <th className="px-3 py-2.5 text-left text-stone-400 font-mono text-[11px] w-28">
+                      Dimension
+                    </th>
+                    {config.jerseySizeChart.map((s) => (
+                      <th key={s.size} className="px-2.5 sm:px-3 py-2.5 font-black text-amber-300 text-sm">
+                        {s.size}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-rose-50 text-stone-700">
-                  {config.jerseySizeChart.map((row) => (
-                    <tr
-                      key={row.size}
-                      className="hover:bg-rose-50/60 transition-colors group cursor-pointer"
-                      onClick={() => {
-                        if (onSelectSize) onSelectSize(row.size);
-                        onClose();
-                      }}
-                    >
-                      <td className="px-3.5 py-2.5 font-bold text-rose-800">
-                        {row.size}
+                <tbody className="divide-y divide-stone-800 font-mono text-stone-200">
+                  <tr className="hover:bg-stone-900/50 transition-colors">
+                    <td className="px-3 py-2.5 text-left font-sans font-bold text-stone-300 text-xs uppercase tracking-wide">
+                      CHEST
+                    </td>
+                    {config.jerseySizeChart.map((s) => (
+                      <td key={s.size} className="px-2.5 sm:px-3 py-2.5 font-bold text-white">
+                        {s.chest}
                       </td>
-                      <td className="px-3.5 py-2.5 font-mono">{row.chest} cm</td>
-                      <td className="px-3.5 py-2.5 font-mono">{row.length} cm</td>
-                      <td className="px-3.5 py-2.5 font-mono">{row.shoulder} cm</td>
-                      <td className="px-2 py-2.5 text-center">
-                        <button
-                          type="button"
-                          className="rounded-lg bg-rose-100 px-2.5 py-1 text-[11px] font-semibold text-rose-800 hover:bg-rose-600 hover:text-white transition-colors"
-                        >
-                          Select
-                        </button>
+                    ))}
+                  </tr>
+                  <tr className="hover:bg-stone-900/50 transition-colors">
+                    <td className="px-3 py-2.5 text-left font-sans font-bold text-stone-300 text-xs uppercase tracking-wide">
+                      LENGTH
+                    </td>
+                    {config.jerseySizeChart.map((s) => (
+                      <td key={s.size} className="px-2.5 sm:px-3 py-2.5">
+                        {s.length}
                       </td>
-                    </tr>
-                  ))}
+                    ))}
+                  </tr>
+                  <tr className="hover:bg-stone-900/50 transition-colors">
+                    <td className="px-3 py-2.5 text-left font-sans font-bold text-stone-300 text-xs uppercase tracking-wide">
+                      SLEEVE LENGTH
+                    </td>
+                    {config.jerseySizeChart.map((s) => (
+                      <td key={s.size} className="px-2.5 sm:px-3 py-2.5">
+                        {s.sleeve}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr className="hover:bg-stone-900/50 transition-colors">
+                    <td className="px-3 py-2.5 text-left font-sans font-bold text-stone-300 text-xs uppercase tracking-wide">
+                      SHOULDER
+                    </td>
+                    {config.jerseySizeChart.map((s) => (
+                      <td key={s.size} className="px-2.5 sm:px-3 py-2.5">
+                        {s.shoulder}
+                      </td>
+                    ))}
+                  </tr>
                 </tbody>
               </table>
+
+              {/* Quick Select Row */}
+              <div className="p-3 bg-stone-900 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+                <span className="text-[11px] text-stone-400 font-sans font-semibold">
+                  Tap to select your size:
+                </span>
+                <div className="flex items-center gap-1.5 w-full sm:w-auto justify-center">
+                  {config.jerseySizeChart.map((s) => (
+                    <button
+                      key={s.size}
+                      type="button"
+                      onClick={() => {
+                        if (onSelectSize) onSelectSize(s.size);
+                        onClose();
+                      }}
+                      className="flex-1 sm:flex-none px-3 py-1.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-extrabold text-xs shadow-sm active:scale-95 transition-all flex items-center justify-center gap-1"
+                    >
+                      <span>{s.size}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Sizing tip */}
             <div className="mt-4 flex items-start gap-2.5 rounded-2xl bg-amber-50 p-3.5 text-xs text-amber-950 border border-amber-200">
               <Info className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
               <p>
-                <strong>Fitting Advice:</strong> The jerseys are breathable athletic dri-fit. If you prefer a relaxed or loose drape, consider picking one size up!
+                <strong>Fitting Advice:</strong> All measurements are in inches. The jerseys are athletic dri-fit fabric. If you prefer a looser or more relaxed fit, consider picking one size up!
               </p>
             </div>
 

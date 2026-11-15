@@ -259,13 +259,11 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
 
   const jerseyStats = useMemo(() => {
     const sizeMap = {
-      XS: 0,
       S: 0,
       M: 0,
       L: 0,
       XL: 0,
       XXL: 0,
-      '3XL': 0,
     };
     let totalJerseysNeeded = 0;
     let noJerseyCount = 0;

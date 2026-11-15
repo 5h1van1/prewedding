@@ -81,7 +81,7 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
               onClick={() => scrollToSection('venue')}
               className="hover:text-rose-700 transition-colors font-serif"
             >
-              Venue
+              Venue Info
             </button>
           </div>
 
@@ -154,7 +154,7 @@ export default function Navbar({ onNavigateToAdmin, activeView }) {
                 onClick={() => scrollToSection('venue')}
                 className="text-left px-3 py-2 rounded-xl hover:bg-rose-50"
               >
-                Venue & Location Map
+                Venue & Event Info
               </button>
               <div className="pt-2 border-t border-rose-100 flex items-center justify-between">
                 <button

@@ -70,7 +70,7 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
     generateIcsCalendar({
       title: `${config.couple.brideName} & ${config.couple.groomName}: Pre-Wedding Celebration 💍✨`,
       description: `Pre-Wedding Celebration & Match!\nSquad: ${teamConfig.name}\nJersey: ${rsvpData.needsJersey ? rsvpData.jerseySize : 'None'}\n\nWear sneakers & party chic casuals!`,
-      location: `${config.venue.name}, ${config.venue.address}`,
+      location: 'Shared via WhatsApp Group Chat',
       dateId: rsvpData.preferredDate,
       startTime: '17:00',
       endTime: '20:00',
@@ -81,7 +81,7 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
     const url = getGoogleCalendarUrl({
       title: `${config.couple.brideName} & ${config.couple.groomName}: Pre-Wedding Celebration 💍✨`,
       description: `Pre-Wedding Celebration & Match!\nSquad: ${teamConfig.name}\nJersey: ${rsvpData.needsJersey ? rsvpData.jerseySize : 'None'}`,
-      location: `${config.venue.name}, ${config.venue.address}`,
+      location: 'Shared via WhatsApp Group Chat',
       dateId: rsvpData.preferredDate,
       startTime: '17:00',
       endTime: '20:00',
@@ -197,7 +197,7 @@ export default function RsvpSuccessModal({ isOpen, onClose, rsvpData, onEditAgai
 
               <div className="mt-3 border-t border-rose-100 pt-2 text-[11px] text-stone-500 flex items-center gap-1">
                 <MapPin className="h-3 w-3 text-rose-500 shrink-0" />
-                <span className="truncate">{config.venue.name}, {config.venue.shortLocation}</span>
+                <span className="truncate">Venue location shared via WhatsApp group</span>
               </div>
             </div>
 

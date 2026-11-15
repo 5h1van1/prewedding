@@ -16,7 +16,7 @@ Instead of sending out a boring Google Form link, we built a full-fledged, mobil
 ### 🏏 The Match & Celebration Lineup
 - **Event:** Amritha & Sanjay: Turf Day
 - **Date:** Thursday, January 28, 2027 (5:00 PM – 8:00 PM)
-- **Venue:** The Pavilion Arena, Bandra West, Mumbai
+- **Venue:** Location details provided by coordinators via WhatsApp group
 - **Schedule:**
   1. Arrival & Team Jersey Handover
   2. The Friendly Clash: **Team Amritha (Rose)** vs **Team Sanjay (Gold)**
@@ -35,7 +35,7 @@ Instead of sending out a boring Google Form link, we built a full-fledged, mobil
   1. Full Name input
   2. Squad selection (Team Amritha in Rose Gold vs Team Sanjay in Champagne Gold)
   3. "Custom jersey available. Do you need one?" (Yes / No toggle)
-  4. Jersey Size Selector (XS, S, M, L, XL, XXL, 3XL) with an interactive **Size Chart Modal** in cm.
+  4. Jersey Size Selector (S, M, L, XL, XXL) with an interactive **Size Chart Modal** in inches.
 - **🎟️ Celebratory Confirmation Pass:**
   - Full-screen confetti cannon.
   - Digital personalized match ticket pass with guest name, squad badge, match date, and jersey size.
@@ -90,9 +90,9 @@ npm run build
 All event details, names, photos, timeline items, and size charts live in a single centralized file: [`src/config.js`](file:///src/config.js).
 
 - **Couple Details:** Names, nicknames, hashtag (`#AmrithaAndSanjay`), cover photo.
-- **Event Date & Venue:** Timings, address, Google Maps link.
+- **Event Date & Venue:** Timings, coordinator group chat location notice.
 - **Squads:** Team names, captain titles, color hex codes, and mottos.
-- **Jersey Size Chart:** Chest, length, and shoulder measurements in cm.
+- **Jersey Size Chart:** Chest, length, sleeve length, and shoulder measurements in inches.
 - **Timeline & Surprise Segment:** Easily enable a surprise sangeet teaser or dance battle slot.
 
 ---
