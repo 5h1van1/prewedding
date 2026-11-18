@@ -8,10 +8,10 @@ import RsvpForm from './components/RsvpForm';
 import Footer from './components/Footer';
 import AdminView from './components/AdminView';
 import RsvpSuccessModal from './components/RsvpSuccessModal';
-import { subscribeToRsvps } from './services/db';
+import { subscribeToSquadCounts } from './services/db';
 
 export default function App() {
-  const [rsvps, setRsvps] = useState([]);
+  const [squadCounts, setSquadCounts] = useState({ bride: null, groom: null, isReady: false });
   const [activeView, setActiveView] = useState(() => {
     const hash = window.location.hash.toLowerCase();
     const pathname = window.location.pathname.toLowerCase();
@@ -25,16 +25,11 @@ export default function App() {
   const [successModalData, setSuccessModalData] = useState(null);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
-  // Subscribe to real-time database (Firestore / Local fallback)
+  // Subscribe to real-time public squad counts (stats/squads) - no guest list is read
   useEffect(() => {
-    const unsubscribe = subscribeToRsvps(
-      (list) => {
-        setRsvps(list || []);
-      },
-      (err) => {
-        // Expected for unauthenticated public guests under strict Firestore rules
-      }
-    );
+    const unsubscribe = subscribeToSquadCounts((counts) => {
+      setSquadCounts(counts);
+    });
 
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
@@ -75,7 +70,6 @@ export default function App() {
   if (activeView === 'admin') {
     return (
       <AdminView
-        rsvps={rsvps}
         onBackToHome={handleBackToHome}
       />
     );
@@ -97,7 +91,7 @@ export default function App() {
 
         {/* Live Team Bride vs Team Groom Face-off & Real-time Squad Counter */}
         <FaceOffBanner
-          rsvps={rsvps}
+          squadCounts={squadCounts}
           onSelectTeam={(teamId) => setPreselectedTeam(teamId)}
         />
 
@@ -111,7 +105,6 @@ export default function App() {
         <RsvpForm
           initialTeam={preselectedTeam}
           onRsvpSuccess={handleRsvpSuccess}
-          existingRsvps={rsvps}
         />
 
       </main>
