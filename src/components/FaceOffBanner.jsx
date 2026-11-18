@@ -3,12 +3,25 @@ import { motion } from 'framer-motion';
 import { config } from '../config';
 import { Crown, Sparkles, Users, Shirt, Heart } from 'lucide-react';
 
-export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
-  const brideCount = rsvps.filter((r) => r.team === 'bride').length;
-  const groomCount = rsvps.filter((r) => r.team === 'groom').length;
-  const totalCount = brideCount + groomCount;
+export default function FaceOffBanner({ squadCounts, rsvps = [], onSelectTeam }) {
+  // Use public real-time squadCounts if provided, else fallback to legacy rsvps prop
+  let brideCount = null;
+  let groomCount = null;
 
-  const bridePercentage = totalCount > 0 ? Math.round((brideCount / totalCount) * 100) : 50;
+  if (squadCounts && typeof squadCounts.bride === 'number' && typeof squadCounts.groom === 'number') {
+    brideCount = squadCounts.bride;
+    groomCount = squadCounts.groom;
+  } else if (!squadCounts && Array.isArray(rsvps) && rsvps.length > 0) {
+    brideCount = rsvps.filter((r) => r.team === 'bride').length;
+    groomCount = rsvps.filter((r) => r.team === 'groom').length;
+  }
+
+  const hasValidCounts = typeof brideCount === 'number' && typeof groomCount === 'number';
+  const brideDisplay = hasValidCounts ? brideCount : '–';
+  const groomDisplay = hasValidCounts ? groomCount : '–';
+
+  const totalCount = hasValidCounts ? brideCount + groomCount : 0;
+  const bridePercentage = hasValidCounts && totalCount > 0 ? Math.round((brideCount / totalCount) * 100) : 50;
   const groomPercentage = 100 - bridePercentage;
 
   const handleTeamClick = (teamId) => {
@@ -43,13 +56,13 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
           <div className="flex items-center justify-between text-xs sm:text-sm font-bold mb-2.5">
             <div className="flex items-center gap-1.5 text-rose-700">
               <Crown className="h-4 w-4 text-rose-600" />
-              <span>{config.teams.bride.name} ({brideCount})</span>
+              <span>{config.teams.bride.name} ({brideDisplay})</span>
             </div>
             <div className="text-[11px] font-serif uppercase tracking-widest text-amber-700 font-semibold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
               LIVE LINEUP
             </div>
             <div className="flex items-center gap-1.5 text-amber-700">
-              <span>({groomCount}) {config.teams.groom.name}</span>
+              <span>({groomDisplay}) {config.teams.groom.name}</span>
               <Sparkles className="h-4 w-4 text-amber-500" />
             </div>
           </div>
@@ -60,7 +73,7 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
               className="h-full rounded-l-full bg-gradient-to-r from-rose-500 to-pink-600 transition-all duration-700 relative"
               style={{ width: `${bridePercentage}%` }}
             >
-              {bridePercentage > 15 && (
+              {hasValidCounts && totalCount > 0 && bridePercentage > 15 && (
                 <span className="absolute inset-y-0 right-2 flex items-center text-[10px] font-bold text-white drop-shadow">
                   {bridePercentage}%
                 </span>
@@ -70,7 +83,7 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
               className="h-full rounded-r-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition-all duration-700 relative"
               style={{ width: `${groomPercentage}%` }}
             >
-              {groomPercentage > 15 && (
+              {hasValidCounts && totalCount > 0 && groomPercentage > 15 && (
                 <span className="absolute inset-y-0 left-2 flex items-center text-[10px] font-bold text-white drop-shadow">
                   {groomPercentage}%
                 </span>
@@ -78,7 +91,11 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
             </motion.div>
           </div>
           <div className="mt-2.5 text-center text-xs text-stone-500 font-serif italic">
-            {brideCount === groomCount ? (
+            {!hasValidCounts ? (
+              <span>Squad counts sync live as guests RSVP! ✨</span>
+            ) : totalCount === 0 ? (
+              <span>Be the first to join a squad and claim the lead! ✨</span>
+            ) : brideCount === groomCount ? (
               <span>Squad numbers are equal! Next RSVP takes the lead. ✨</span>
             ) : brideCount > groomCount ? (
               <span className="text-rose-700 font-medium">Team Amritha's Rose Squad has the bigger cheer squad right now! 🌸</span>
@@ -131,7 +148,7 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
                   <Users className="h-3.5 w-3.5 text-rose-500" />
                   Confirmed Players:
                 </span>
-                <span className="font-bold text-rose-700 text-sm">{brideCount} Joined</span>
+                <span className="font-bold text-rose-700 text-sm">{brideDisplay} Joined</span>
               </div>
             </div>
 
@@ -181,7 +198,7 @@ export default function FaceOffBanner({ rsvps = [], onSelectTeam }) {
                   <Users className="h-3.5 w-3.5 text-amber-600" />
                   Confirmed Players:
                 </span>
-                <span className="font-bold text-amber-700 text-sm">{groomCount} Joined</span>
+                <span className="font-bold text-amber-700 text-sm">{groomDisplay} Joined</span>
               </div>
             </div>
 
