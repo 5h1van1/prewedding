@@ -4,8 +4,7 @@
 
 This is a fun project made together with my friend **Sager** for his brother's pre-wedding celebration. Enjoy the work we did, because we clearly didn't want to study during exam study holidays lol! 📚🚫
 
-👉 **Open Live Website:** [https://5h1van1.github.io/prewedding/](https://5h1van1.github.io/prewedding/)  
-🛡️ **Organizer Portal:** [https://5h1van1.github.io/prewedding/#admin](https://5h1van1.github.io/prewedding/#admin)
+👉 **Live site:** hosted on Cloudflare Workers (project `amrithawedsanjay`). Organizer portal: add `/#admin` to the site URL.
 
 ---
 
@@ -30,7 +29,7 @@ Instead of sending out a boring Google Form link, we built a full-fledged, mobil
 
 - **📱 Mobile-First & WhatsApp Ready:** Built for 375px+ mobile viewports with fast load times and custom Open Graph meta tags so WhatsApp previews show the couple photo and event teaser text.
 - **🌸 Luxury Rose & Gold Theme:** Dusty rose and champagne gold gradients, elegant typography (*Great Vibes*, *Playfair Display*, and *Plus Jakarta Sans*), subtle animations, and celebratory confetti.
-- **🔥 Live Squad Face-Off Banner:** Real-time scoreboard showing how many guests have drafted into Team Amritha vs Team Sanjay.
+- **🔥 Live Squad Face-Off Banner:** Real-time scoreboard showing how many guests have drafted into Team Amritha vs Team Sanjay. Reads a public counter document (`stats/squads`), never the guest list.
 - **📋 Seamless Multi-Step RSVP Form:**
   1. Full Name input
   2. Squad selection (Team Amritha in Rose Gold vs Team Sanjay in Champagne Gold)
@@ -49,7 +48,7 @@ Instead of sending out a boring Google Form link, we built a full-fledged, mobil
   - Manual guest addition and inline guest editor.
 - **☁️ Cloud Firestore Real-Time Database:**
   - Every guest submission is saved to the `rsvps` collection in Firebase Firestore.
-  - Secured with custom Firestore rules: public create-only with schema & server timestamp validation, and authenticated admin-only read/update/delete.
+  - Secured with custom Firestore rules: public create-only with schema & server timestamp validation, and authenticated admin-only read/update/delete. The only public read is `stats/squads` (two squad totals, no guest data); the public can raise it only by +1 together with a real RSVP.
   - Resilient local fallback store for offline testing.
 
 ---
@@ -59,7 +58,7 @@ Instead of sending out a boring Google Form link, we built a full-fledged, mobil
 - **Frontend:** React 18, Vite, Tailwind CSS, Framer Motion, Lucide Icons, Canvas Confetti
 - **Backend / Database:** Firebase Cloud Firestore (v10.14.1 modular SDK)
 - **Authentication:** Firebase Email/Password Authentication
-- **Hosting:** GitHub Pages (`gh-pages`)
+- **Hosting:** Cloudflare Workers (Git-connected builds)
 
 ---
 
@@ -82,6 +81,11 @@ Open [http://localhost:5173](http://localhost:5173) in your browser (switch to M
 ```bash
 npm run build
 ```
+
+### Deploying
+1. Cloudflare: set VITE_FIREBASE_API_KEY, VITE_FIREBASE_AUTH_DOMAIN, VITE_FIREBASE_PROJECT_ID, VITE_FIREBASE_STORAGE_BUCKET, VITE_FIREBASE_MESSAGING_SENDER_ID and VITE_FIREBASE_APP_ID under "Build variables and secrets", then rebuild (Vite reads them at build time).
+2. Publish firestore.rules in Firebase Console > Firestore Database > Rules (Cloudflare does not deploy rules).
+3. After the first deploy, sign in at /#admin and press "Recount" once to create/refresh stats/squads.
 
 ---
 
