@@ -64,5 +64,26 @@ service cloud.firestore {
       // 3. ONLY the authorized organizer UID can read, update, or delete
       allow read, update, delete: if isOrganizer();
     }
+
+    // Public Squad Counter
+    match /stats/squads {
+      allow read: if true;
+      allow create, update, delete: if isOrganizer();
+      allow update: if isValidBump();
+    }
+
+    function isValidBump() {
+      let before = resource.data;
+      let after = request.resource.data;
+      let rsvpPath = /databases/$(database)/documents/rsvps/$(after.lastRsvpId);
+      return after.keys().hasOnly(['bride', 'groom', 'lastRsvpId'])
+        && after.lastRsvpId is string
+        && !exists(rsvpPath)
+        && existsAfter(rsvpPath)
+        && (
+          (getAfter(rsvpPath).data.team == 'bride' && after.bride == before.bride + 1 && after.groom == before.groom)
+          || (getAfter(rsvpPath).data.team == 'groom' && after.groom == before.groom + 1 && after.bride == before.bride)
+        );
+    }
   }
 }
