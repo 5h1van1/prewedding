@@ -6,6 +6,7 @@ import {
   isFirebaseReady,
   saveRsvp,
   subscribeToRsvps,
+  recountSquads,
 } from '../services/db';
 import {
   signInAdmin,
@@ -173,6 +174,9 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
   const [modalSaving, setModalSaving] = useState(false);
   const [modalError, setModalError] = useState('');
 
+  const [isRecounting, setIsRecounting] = useState(false);
+  const [recountMessage, setRecountMessage] = useState('');
+
   const handleOpenAdd = () => {
     setEditingRsvp(null);
     setModalError('');
@@ -216,6 +220,7 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
         ...modalForm,
         name: modalForm.name.trim(),
         id: editingRsvp?.id,
+        previousTeam: editingRsvp?.team,
       };
 
       const result = await saveRsvp(payload);
@@ -233,12 +238,43 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
     }
   };
 
-  const handleDelete = async (docId, name) => {
+  const handleDelete = async (docId, name, team) => {
     if (window.confirm(`Are you sure you want to remove RSVP for "${name}" from Cloud Firestore?`)) {
-      const result = await deleteRsvp(docId);
+      const result = await deleteRsvp(docId, team);
       if (!result.success) {
         alert(result.error || 'Failed to delete RSVP from cloud database.');
       }
+    }
+  };
+
+  const handleRecount = async () => {
+    const brideTotal = effectiveRsvps.filter((r) => r.team === 'bride').length;
+    const groomTotal = effectiveRsvps.filter((r) => r.team === 'groom').length;
+
+    const confirmed = window.confirm(
+      `Recount squad totals from all ${effectiveRsvps.length} loaded RSVPs?\n\n` +
+      `• Team Amritha: ${brideTotal}\n` +
+      `• Team Sanjay: ${groomTotal}\n\n` +
+      `This will update the public squad counter doc (stats/squads).`
+    );
+
+    if (!confirmed) return;
+
+    setIsRecounting(true);
+    setRecountMessage('');
+    try {
+      const res = await recountSquads(effectiveRsvps);
+      if (res.success) {
+        setRecountMessage(`Squad counts updated: Amritha ${res.bride}, Sanjay ${res.groom}`);
+        setTimeout(() => setRecountMessage(''), 5000);
+      } else {
+        alert(res.error || 'Failed to update squad counter in Firestore.');
+      }
+    } catch (err) {
+      console.error('Recount error:', err);
+      alert('An error occurred during recount: ' + (err.message || err));
+    } finally {
+      setIsRecounting(false);
     }
   };
 
@@ -493,6 +529,20 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
               <span className="hidden sm:inline">Export CSV</span>
             </button>
 
+            <button
+              onClick={handleRecount}
+              disabled={isRecounting}
+              className="flex items-center gap-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white px-3 py-1.5 text-xs font-bold shadow-sm transition-colors"
+              title="Recount and sync public squad totals (stats/squads)"
+            >
+              {isRecounting ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <RotateCcw className="h-3.5 w-3.5" />
+              )}
+              <span>Recount</span>
+            </button>
+
             {isFirebaseReady && currentUser ? (
               <button
                 onClick={handleLogout}
@@ -506,6 +556,26 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
           </div>
         </div>
       </header>
+
+      {/* Recount Success Alert Banner */}
+      {recountMessage && (
+        <div className="bg-emerald-50 border-b border-emerald-200 px-4 py-2.5">
+          <div className="mx-auto max-w-6xl flex items-center justify-between text-xs text-emerald-800">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-emerald-600 shrink-0" />
+              <span>
+                <strong>Counter Synced:</strong> {recountMessage}
+              </span>
+            </div>
+            <button
+              onClick={() => setRecountMessage('')}
+              className="text-emerald-500 hover:text-emerald-800 font-bold ml-2"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Sync Error Alert Banner */}
       {syncError && (
@@ -778,7 +848,7 @@ export default function AdminView({ rsvps: propRsvps = [], onBackToHome }) {
                             <Edit2 className="h-3.5 w-3.5" />
                           </button>
                           <button
-                            onClick={() => handleDelete(rsvp.id, rsvp.name)}
+                            onClick={() => handleDelete(rsvp.id, rsvp.name, rsvp.team)}
                             className="rounded-lg p-1.5 text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-colors"
                             title="Delete RSVP"
                           >
